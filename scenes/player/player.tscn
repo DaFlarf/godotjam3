@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmhcmlwn2aqnh"]
+
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_oaq16"]
+[ext_resource type="PackedScene" uid="uid://1rq6tt0w6o3w" path="res://scenes/state_machine/state_machine.tscn" id="2_xh24f"]
+[ext_resource type="Script" path="res://scripts/state_machine/move_script.gd" id="3_p7n7k"]
+
+[node name="player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_oaq16")
+
+[node name="animations" type="AnimatedSprite2D" parent="."]
+
+[node name="collision" type="CollisionShape2D" parent="."]
+
+[node name="state_machine" parent="." instance=ExtResource("2_xh24f")]
+
+[node name="move_component" type="Node" parent="."]
+script = ExtResource("3_p7n7k")
