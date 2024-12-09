@@ -11,6 +11,7 @@ func init(parent: CharacterBody2D, animations: AnimatedSprite2D, move_component)
 	for child in get_children():
 		child.parent = parent
 		child.animations = animations
+		child.move_component = move_component
 
 	# Initialize to the default state
 	change_state(starting_state)
