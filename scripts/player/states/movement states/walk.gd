@@ -7,6 +7,8 @@ var dash_state: State
 var brake_state: State
 @export
 var slide_state: State
+@export
+var traction:= 20
 
 #update facing
 func enter() -> void:
@@ -33,7 +35,7 @@ func process_physics(delta: float) -> State:
 		parent.velocity = movement * move_speed
 		
 	else: #slow the heck down
-		current_speed -= 20
+		current_speed -= traction
 		parent.velocity = movement * current_speed
 	parent.move_and_slide()	
 	return null
