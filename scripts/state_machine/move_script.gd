@@ -18,3 +18,8 @@ func wants_slide() -> bool:
 	if (Input.is_action_just_pressed("slide")):
 		return true
 	return false
+
+func wants_brake() -> bool:
+	if (Input.is_action_just_pressed("brake")):
+		return true
+	return false

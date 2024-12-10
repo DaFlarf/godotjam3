@@ -1,21 +1,50 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmhcmlwn2aqnh"]
+[gd_scene load_steps=14 format=3 uid="uid://cmhcmlwn2aqnh"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_oaq16"]
-[ext_resource type="Texture2D" uid="uid://o64n0hbl02j" path="res://icon.svg" id="2_vxhhp"]
+[ext_resource type="Texture2D" uid="uid://cp238d2r67dpg" path="res://sprites/player/movement/idle/idle1.png" id="2_faywq"]
 [ext_resource type="PackedScene" uid="uid://1rq6tt0w6o3w" path="res://scenes/state_machine/state_machine.tscn" id="2_xh24f"]
 [ext_resource type="Script" path="res://scripts/player/states/movement states/walk.gd" id="3_ixfrj"]
 [ext_resource type="Script" path="res://scripts/state_machine/move_script.gd" id="3_p7n7k"]
+[ext_resource type="Texture2D" uid="uid://d2g8to1flghnr" path="res://sprites/player/movement/idle/idle4.png" id="3_ufat3"]
+[ext_resource type="Texture2D" uid="uid://ep1rbxyd7qbo" path="res://sprites/player/movement/idle/idle2.png" id="4_7ayc1"]
 [ext_resource type="Script" path="res://scripts/player/states/movement states/idle.gd" id="5_c32jj"]
+[ext_resource type="Texture2D" uid="uid://dntrhcm5c4tbk" path="res://sprites/player/movement/idle/idle3.png" id="5_gsp47"]
 [ext_resource type="Script" path="res://scripts/player/states/movement states/dash.gd" id="6_v3pa1"]
+[ext_resource type="Script" path="res://scripts/player/states/movement states/slide.gd" id="7_waao1"]
+[ext_resource type="Script" path="res://scripts/player/states/movement states/brake.gd" id="11_sr0os"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_83jlx"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_vxhhp")
+"texture": ExtResource("2_faywq")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ufat3")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_7ayc1")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_gsp47")
+}],
+"loop": true,
+"name": &"idle_up",
 "speed": 5.0
 }]
 
@@ -24,25 +53,45 @@ script = ExtResource("1_oaq16")
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_83jlx")
+animation = &"idle_up"
 
 [node name="collision" type="CollisionShape2D" parent="."]
 
 [node name="state_machine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("2_xh24f")]
 starting_state = NodePath("idle")
 
-[node name="walk" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "dash_state")]
+[node name="walk" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "dash_state", "brake_state", "slide_state")]
 script = ExtResource("3_ixfrj")
 idle_state = NodePath("../idle")
 dash_state = NodePath("../dash")
+brake_state = NodePath("../brake")
+slide_state = NodePath("../slide")
+animation_name = "idle"
 
 [node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("walk_state")]
 script = ExtResource("5_c32jj")
 walk_state = NodePath("../walk")
+animation_name = "idle"
 
-[node name="dash" type="Node" parent="state_machine" node_paths=PackedStringArray("move_state", "idle_state")]
+[node name="dash" type="Node" parent="state_machine" node_paths=PackedStringArray("move_state", "idle_state", "slide_state", "brake_state")]
 script = ExtResource("6_v3pa1")
 move_state = NodePath("../walk")
 idle_state = NodePath("../idle")
+slide_state = NodePath("../slide")
+brake_state = NodePath("../brake")
+animation_name = "idle"
+
+[node name="slide" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "dash_state", "brake_state")]
+script = ExtResource("7_waao1")
+idle_state = NodePath("../idle")
+dash_state = NodePath("../dash")
+brake_state = NodePath("../brake")
+animation_name = "idle"
+
+[node name="brake" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("11_sr0os")
+idle_state = NodePath("../idle")
+animation_name = "idle"
 
 [node name="move_component" type="Node" parent="."]
 script = ExtResource("3_p7n7k")

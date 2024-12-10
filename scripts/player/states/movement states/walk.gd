@@ -3,6 +3,14 @@ extends State
 var idle_state: State
 @export
 var dash_state: State
+@export
+var brake_state: State
+@export
+var slide_state: State
+
+#update facing
+func enter() -> void:
+	find_direction()
 
 func process_physics(delta: float) -> State:
 	
@@ -17,6 +25,9 @@ func process_physics(delta: float) -> State:
 		#if you're not moving
 		if movement == Vector2(0,0):
 			return idle_state
+			
+		else:
+			find_direction()
 		
 		#move those legs
 		parent.velocity = movement * move_speed
@@ -30,4 +41,8 @@ func process_physics(delta: float) -> State:
 func process_input(event: InputEvent) -> State:
 	if(move_component.wants_dash()):
 		return dash_state
+	if(move_component.wants_brake()):
+		return brake_state
+	if(move_component.wants_slide()):
+		return slide_state
 	return null

@@ -8,6 +8,10 @@ var state_machine = $state_machine
 @onready
 var move_component = $move_component
 
+var slide_cancel = false
+var dash_cancel = false
+var dir: String = "_right"
+
 func _ready() -> void:
 	#set up state machine
 	state_machine.init(self, animations, move_component)
