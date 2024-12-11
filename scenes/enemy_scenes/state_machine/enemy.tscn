@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://cfxqiknbqe2vm"]
+
+[ext_resource type="Script" path="res://scripts/enemy_scripts/state_machine/enemy.gd" id="1_reaoh"]
+[ext_resource type="Texture2D" uid="uid://dsg5weojg656s" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/enemies/flying creature/fly_anim_f0.png" id="2_hgxhg"]
+[ext_resource type="PackedScene" uid="uid://1rq6tt0w6o3w" path="res://scenes/state_machine/state_machine.tscn" id="2_xbtxk"]
+[ext_resource type="Script" path="res://scenes/enemy_scenes/state_machine/idle.gd" id="3_vg7h0"]
+[ext_resource type="Script" path="res://scenes/enemy_scenes/state_machine/chase.gd" id="4_67hc7"]
+[ext_resource type="Script" path="res://scenes/enemy_scenes/state_machine/move_component.gd" id="5_weuet"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h7eaq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hgxhg")
+}],
+"loop": true,
+"name": &"default_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hgxhg")
+}],
+"loop": true,
+"name": &"default_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hgxhg")
+}],
+"loop": true,
+"name": &"default_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hgxhg")
+}],
+"loop": true,
+"name": &"default_up",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_reaoh")
+
+[node name="animations" type="AnimatedSprite2D" parent="."]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_h7eaq")
+animation = &"default_up"
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(2, 3)
+
+[node name="state_machine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("2_xbtxk")]
+starting_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="state_machine" node_paths=PackedStringArray("chase_state")]
+script = ExtResource("3_vg7h0")
+chase_state = NodePath("../Chase")
+animation_name = "default"
+
+[node name="Chase" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("4_67hc7")
+idle_state = NodePath("../Idle")
+animation_name = "default"
+
+[node name="move_component" type="Node" parent="."]
+script = ExtResource("5_weuet")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 5.0
+target_desired_distance = 5.0
+path_postprocessing = 1
+avoidance_enabled = true
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 0, 1)
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

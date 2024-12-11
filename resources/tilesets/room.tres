@@ -1,8 +1,14 @@
-[gd_resource type="TileSet" load_steps=22 format=3 uid="uid://cbg1eym0o7j7c"]
+[gd_resource type="TileSet" load_steps=23 format=3 uid="uid://cbg1eym0o7j7c"]
 
 [ext_resource type="Texture2D" uid="uid://0cqtfw61p505" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/full tilemap.png" id="1_wo8w4"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_txfye"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_rm1tu"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
@@ -162,6 +168,7 @@ texture = ExtResource("1_wo8w4")
 8:2/0 = 0
 8:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_wd4jh")
 0:3/0 = 0
+0:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_rm1tu")
 1:3/0 = 0
 2:3/0 = 0
 2:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_qa27t")
@@ -180,9 +187,9 @@ texture = ExtResource("1_wo8w4")
 4:4/0 = 0
 4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(3.375, 0.25, 8, 0.25, 8, 8, 3.375, 8)
 6:4/0 = 0
-6:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0.875, -8, 0.75)
 7:4/0 = 0
-7:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0.875, -8, 0.75)
 8:4/0 = 0
 8:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:5/0 = 0
@@ -190,11 +197,11 @@ texture = ExtResource("1_wo8w4")
 4:5/0 = 0
 4:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(3.75, -8, 8, -8, 8, 8, 3.875, 8)
 6:5/0 = 0
-6:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0.875, -8, 0.75)
 7:5/0 = 0
-7:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0.875, -8, 0.75)
 8:5/0 = 0
-8:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0.875, -8, 0.75)
 1:6/0 = 0
 1:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -0.25, 8, -0.5, 8, 8, 8, 8, -8, 8)
 2:6/0 = 0
@@ -216,5 +223,6 @@ texture = ExtResource("1_wo8w4")
 
 [resource]
 physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 2
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_kkgh6")

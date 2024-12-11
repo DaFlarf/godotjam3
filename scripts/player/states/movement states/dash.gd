@@ -45,9 +45,12 @@ func process_physics(delta:float) -> State:
 		if movement == Vector2(0,0):
 			return idle_state
 		
-		#dash	
-		parent.velocity = movement * dash_speed
-		print(movement)
+		#dash
+		if parent.velocity.length() <= dash_speed:	
+			parent.velocity = movement * dash_speed
+		else:
+			parent.velocity = movement * parent.velocity.length()
+		print(parent.velocity.length())
 		parent.move_and_slide()	
 	return null
 

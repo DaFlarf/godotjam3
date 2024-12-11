@@ -1,0 +1,168 @@
+[gd_scene load_steps=22 format=3 uid="uid://cpcsn615hmgyo"]
+
+[ext_resource type="Script" path="res://scripts/room_scripts/locked_door.gd" id="1_auf6f"]
+[ext_resource type="Texture2D" uid="uid://bgdbdvxc5gnpx" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/tiles/wall/door_anim_opening_f0.png" id="1_epye5"]
+[ext_resource type="Texture2D" uid="uid://brupqawnxhm3v" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/tiles/wall/door_anim_opening_f1.png" id="2_4o3ne"]
+[ext_resource type="Texture2D" uid="uid://bfouf25r5hvqn" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/tiles/wall/door_anim_opening_f2.png" id="3_0tikd"]
+[ext_resource type="Texture2D" uid="uid://cssd1c17an82b" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/tiles/wall/door_anim_opening_f3.png" id="4_r4rv2"]
+[ext_resource type="Texture2D" uid="uid://bw1nhhdpgkj2p" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/tiles/wall/door_anim_opening_f4.png" id="5_scosl"]
+[ext_resource type="Texture2D" uid="uid://dfsanxweerb6x" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/tiles/wall/door_anim_opening_f5.png" id="6_bdq4x"]
+[ext_resource type="Texture2D" uid="uid://c7wurbtxbnbbv" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/tiles/wall/door_anim_opening_f6.png" id="7_pmp8v"]
+[ext_resource type="Texture2D" uid="uid://br0v15ehp22rs" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/tiles/wall/door_anim_opening_f7.png" id="8_3exw1"]
+[ext_resource type="Texture2D" uid="uid://cii164unvy8sq" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/tiles/wall/door_anim_opening_f8.png" id="9_dgtv8"]
+[ext_resource type="Texture2D" uid="uid://bgvxuu4og2xbx" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/tiles/wall/door_anim_opening_f9.png" id="10_7wjua"]
+[ext_resource type="Texture2D" uid="uid://b3iormppq6rl" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/tiles/wall/door_anim_opening_f10.png" id="11_2xwv2"]
+[ext_resource type="Texture2D" uid="uid://bb2ojvy0pafas" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/tiles/wall/door_anim_opening_f11.png" id="12_0e8ke"]
+[ext_resource type="Texture2D" uid="uid://hjbmdu7dayo8" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/tiles/wall/door_anim_opening_f12.png" id="13_1bh0i"]
+[ext_resource type="Texture2D" uid="uid://dscb5qaoso8h" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/tiles/wall/door_anim_opening_f13.png" id="14_o8831"]
+[ext_resource type="Texture2D" uid="uid://tocixwwv1vys" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/tiles/wall/door_fullyopen.png" id="15_bjwx1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oa88h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_epye5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4o3ne")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0tikd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_r4rv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_scosl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_bdq4x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pmp8v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3exw1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_dgtv8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_7wjua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_2xwv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_0e8ke")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_1bh0i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_o8831")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_bjwx1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_xrr47"]
+resource_name = "open"
+length = 0.98
+step = 0.07
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.14, 0.21, 0.28, 0.35, 0.42, 0.49, 0.56, 0.63, 0.7, 0.77, 0.84, 0.91, 0.98),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.928571),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_dqewd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ubbtc"]
+_data = {
+"RESET": SubResource("Animation_dqewd"),
+"open": SubResource("Animation_xrr47")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5qmt"]
+size = Vector2(31, 28)
+
+[node name="LockedDoor" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_auf6f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_oa88h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ubbtc")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+scale = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_s5qmt")

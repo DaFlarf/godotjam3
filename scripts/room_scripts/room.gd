@@ -1,0 +1,75 @@
+extends Node2D
+class_name room
+
+const SPAWN_EXPLOSION_SCENE: PackedScene = preload("res://scenes/enemy_scenes/effects/spawn_explosion.tscn")
+const WALL_SCENE: PackedScene = preload("res://scenes/room_scenes/wall.tscn")
+
+const ENEMY_SCENES: Dictionary = {
+	"ENEMY": preload("res://scenes/enemy_scenes/state_machine/enemy.tscn")
+}
+
+var num_enemies: int
+var room_beaten = false
+
+@onready var tilemap: TileMapLayer = get_node("bottom walls")
+@onready var door_container: Node2D = get_node("Doors")
+@onready var enemy_positions_container: Node2D = get_node("EnemyPositions")
+@onready var player_detector: Area2D = get_node("PlayerDetector")
+@onready var entrance: Node2D = get_node("Entrance")
+@onready var wall_container: Node2D = get_node("Walls")
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	num_enemies = enemy_positions_container.get_child_count()
+	player_detector.set_deferred("monitoring", true)
+
+func _on_enemy_killed() -> void:
+	num_enemies -= 1
+	if num_enemies <= 0:
+		_open_doors()
+		_remove_walls()
+		room_beaten = true
+
+func _open_doors() -> void:
+	for door in door_container.get_children():
+		door.open()
+	for wall in wall_container.get_children():
+		wall.queue_free()
+
+func _close_entrance() -> void:
+	for entry_position in entrance.get_children():
+		var wall: StaticBody2D = WALL_SCENE.instantiate()
+		#wall_container.add_child(wall)
+		wall_container.call_deferred("add_child", wall)
+		wall.global_position = entry_position.position
+
+func _remove_walls():
+	for wall in wall_container.get_children():
+		wall.queue_free()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _spawn_enemies() -> void:
+	for enemy_position in enemy_positions_container.get_children():
+		var enemy: CharacterBody2D = ENEMY_SCENES.ENEMY.instantiate()
+		var __ = enemy.connect("tree_exited", func f():
+			_on_enemy_killed())
+		enemy.global_position = enemy_position.global_position
+		call_deferred("add_child", enemy)
+		
+		var spawn_explosion: AnimatedSprite2D = SPAWN_EXPLOSION_SCENE.instantiate()
+		spawn_explosion.global_position = enemy_position.global_position
+		call_deferred("add_child", spawn_explosion)
+
+
+func _on_player_detector_body_entered(body: CharacterBody2D) -> void:
+	player_detector.set_deferred("monitoring", false)
+	if num_enemies > 0:
+		if (!room_beaten):
+			_close_entrance()
+		_spawn_enemies()
+	else:
+		_open_doors()
+
+func _reset():
+	num_enemies = enemy_positions_container.get_child_count()
+	player_detector.set_deferred("monitoring", true)

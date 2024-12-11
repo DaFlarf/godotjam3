@@ -1,27 +1,74 @@
-[gd_scene load_steps=3 format=3 uid="uid://bx5fjserd040x"]
+[gd_scene load_steps=7 format=4 uid="uid://bx5fjserd040x"]
 
 [ext_resource type="TileSet" uid="uid://cbg1eym0o7j7c" path="res://resources/tilesets/room.tres" id="1_a5o1s"]
-[ext_resource type="PackedScene" uid="uid://cmhcmlwn2aqnh" path="res://scenes/player/player.tscn" id="2_mg0dx"]
+[ext_resource type="Script" path="res://scripts/room_scripts/room.gd" id="1_qgrmu"]
+[ext_resource type="PackedScene" uid="uid://cpcsn615hmgyo" path="res://scenes/room_scenes/locked_door.tscn" id="2_68xq3"]
+[ext_resource type="Script" path="res://scenes/room_scenes/navigation_tile_layer.gd" id="3_dslbh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p206f"]
+size = Vector2(126, 63)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g30je"]
+size = Vector2(125, 62)
 
 [node name="Room" type="Node2D"]
+script = ExtResource("1_qgrmu")
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="Floor" type="TileMapLayer" parent="."]
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAACAAgAAAAEAAYAAAACAAcAAAAEAAUAAAACAAYAAAAEAAUAAAACAAUAAAAEAAUAAAACAAQAAAAEAAUAAAAEAAMAAAAIAAUAAAADAAMAAAAHAAQAAAACAAMAAAAEAAUAAAACAAIAAAAEAAQAAAADAAIAAAACAAYAAAAEAAIAAAACAAYAAAAHAAIAAAACAAYAAAAIAAIAAAACAAYAAAAJAAIAAAACAAYAAAAKAAIAAAACAAYAAAALAAIAAAACAAYAAAAMAAIAAAADAAQAAAAMAAMAAAADAAUAAAAMAAQAAAADAAUAAAAMAAUAAAADAAUAAAAMAAYAAAADAAUAAAAKAAgAAAADAAYAAAAHAAMAAAAHAAQAAAAIAAMAAAAIAAUAAAAJAAMAAAAHAAQAAAAKAAMAAAAHAAQAAAALAAMAAAAIAAUAAAADAAQAAAADAAEAAAAEAAQAAAADAAEAAAAFAAQAAAADAAEAAAAGAAQAAAADAAEAAAAHAAQAAAADAAEAAAAIAAQAAAADAAEAAAAJAAQAAAADAAEAAAAKAAQAAAADAAEAAAALAAQAAAADAAEAAAADAAUAAAADAAEAAAAEAAUAAAADAAEAAAAFAAUAAAADAAEAAAAGAAUAAAADAAEAAAAHAAUAAAADAAEAAAAIAAUAAAADAAEAAAAJAAUAAAADAAEAAAAKAAUAAAADAAEAAAALAAUAAAADAAEAAAADAAYAAAADAAEAAAAEAAYAAAADAAEAAAAFAAYAAAADAAEAAAAGAAYAAAADAAEAAAAHAAYAAAADAAEAAAAIAAYAAAADAAEAAAAJAAYAAAADAAEAAAAKAAYAAAADAAEAAAALAAYAAAADAAEAAAADAAcAAAADAAEAAAAEAAcAAAADAAEAAAAFAAcAAAADAAEAAAAGAAcAAAADAAEAAAAHAAcAAAADAAEAAAAIAAcAAAADAAEAAAAJAAcAAAADAAEAAAAKAAcAAAADAAEAAAALAAcAAAADAAEAAAADAAgAAAADAAEAAAAEAAgAAAADAAEAAAAFAAgAAAADAAEAAAAGAAgAAAADAAEAAAAHAAgAAAADAAEAAAAIAAgAAAADAAEAAAAJAAgAAAADAAEAAAAMAAcAAAADAAYAAAA=")
+tile_set = ExtResource("1_a5o1s")
+script = ExtResource("3_dslbh")
+
+[node name="top walls" type="TileMapLayer" parent="."]
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAACAAgAAAAEAAYAAAACAAcAAAAEAAUAAAACAAYAAAAEAAUAAAACAAUAAAAEAAUAAAACAAQAAAAEAAUAAAAEAAMAAAAIAAUAAAADAAMAAAAHAAQAAAACAAMAAAAEAAUAAAACAAIAAAAEAAQAAAADAAIAAAACAAYAAAAEAAIAAAACAAYAAAAHAAIAAAACAAYAAAAIAAIAAAACAAYAAAAJAAIAAAACAAYAAAAKAAIAAAACAAYAAAALAAIAAAACAAYAAAAMAAIAAAADAAQAAAAMAAMAAAADAAUAAAAMAAQAAAADAAUAAAAMAAUAAAADAAUAAAAMAAYAAAADAAUAAAAKAAgAAAADAAYAAAAHAAMAAAAHAAQAAAAIAAMAAAAIAAUAAAAJAAMAAAAHAAQAAAAKAAMAAAAHAAQAAAALAAMAAAAIAAUAAAA=")
+tile_set = ExtResource("1_a5o1s")
+
+[node name="bottom walls" type="TileMapLayer" parent="."]
+z_index = 1
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAAKAAcAAAACAAcAAAALAAcAAAACAAcAAAAMAAcAAAADAAYAAAAJAAgAAAACAAcAAAAGAAgAAAACAAcAAAAFAAgAAAACAAcAAAAEAAgAAAACAAcAAAADAAgAAAACAAcAAAA=")
+tile_set = ExtResource("1_a5o1s")
+
+[node name="Furniture map" type="TileMapLayer" parent="."]
 scale = Vector2(4, 4)
 tile_set = ExtResource("1_a5o1s")
-format = 2
-layer_0/tile_data = PackedInt32Array(131076, 131072, 6, 131075, 131072, 6, 196619, 524288, 4, 131083, 327680, 6, 131082, 131072, 7, 131081, 131072, 7, 131080, 131072, 7, 131079, 131072, 7, 196611, 393216, 4, 196612, 524288, 5, 131074, 262144, 4, 196610, 262144, 5, 262146, 262144, 5, 327682, 262144, 5, 393218, 262144, 5, 458754, 262144, 5, 524290, 262144, 5, 196618, 524288, 5, 196617, 524288, 4, 196616, 524288, 4, 196615, 524288, 4, 131084, 196608, 4, 196620, 196608, 5, 262156, 196608, 5, 327692, 196608, 5, 262147, 196608, 1, 262148, 196608, 1, 262149, 196608, 1, 262150, 196608, 1, 262151, 196608, 1, 262152, 196608, 1, 262153, 196608, 1, 262154, 196608, 1, 262155, 196608, 1, 327683, 196608, 1, 327684, 196608, 1, 327685, 196608, 1, 327686, 196608, 1, 327687, 196608, 1, 327688, 196608, 1, 327689, 196608, 1, 327690, 262144, 3, 327691, 131072, 3, 393228, 196608, 5, 393227, 196608, 1, 393226, 196608, 1, 393225, 196608, 1, 393224, 196608, 1, 393223, 196608, 1, 393222, 196608, 3, 393221, 196608, 1, 393220, 196608, 1, 393219, 196608, 1, 458763, 196608, 1, 458762, 196608, 1, 458761, 196608, 1, 458760, 196608, 1, 458759, 196608, 1, 524291, 196608, 1, 524292, 196608, 1, 524293, 196608, 1, 524294, 196608, 1, 458755, 196608, 1, 458756, 196608, 1, 458757, 196608, 1, 458758, 196608, 1, 524297, 196608, 1, 524298, 196608, 5)
 
-[node name="TileMap2" type="TileMap" parent="."]
-scale = Vector2(4, 4)
-tile_set = ExtResource("1_a5o1s")
-format = 2
-layer_0/z_index = 1
-layer_0/tile_data = PackedInt32Array(458764, 196608, 6, 458763, 131072, 7, 458762, 131072, 7, 524294, 131072, 7, 524293, 131072, 7, 524292, 131072, 7, 524291, 131072, 7, 524297, 131072, 7)
+[node name="Entrance" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Entrance"]
+position = Vector2(541, 540)
+
+[node name="Marker2D2" type="Marker2D" parent="Entrance"]
+position = Vector2(477, 540)
 
 [node name="Doors" type="Node2D" parent="."]
 
+[node name="LockedDoor" parent="Doors" instance=ExtResource("2_68xq3")]
+position = Vector2(384, 192)
+
 [node name="EnemyPositions" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="EnemyPositions"]
+position = Vector2(668, 346)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemyPositions"]
+position = Vector2(224, 349)
+
+[node name="Marker2D3" type="Marker2D" parent="EnemyPositions"]
+position = Vector2(538, 285)
 
 [node name="PlayerDetector" type="Area2D" parent="."]
 
-[node name="player" parent="." instance=ExtResource("2_mg0dx")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2(510, 414)
+shape = SubResource("RectangleShape2D_p206f")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2(382.5, 286)
+shape = SubResource("RectangleShape2D_g30je")
+
+[node name="Walls" type="Node2D" parent="."]
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]

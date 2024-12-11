@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://b65q7vn0oaeef"]
+
+[ext_resource type="Texture2D" uid="uid://ddt6s8v2c0fyg" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/effects (new)/enemy_afterdead_explosion_anim_spritesheet.png" id="1_via3d"]
+[ext_resource type="Script" path="res://scripts/enemy_scripts/effects/spawn_explosion.gd" id="2_cddwb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0igox"]
+atlas = ExtResource("1_via3d")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2itr"]
+atlas = ExtResource("1_via3d")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mi3gi"]
+atlas = ExtResource("1_via3d")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8slx3"]
+atlas = ExtResource("1_via3d")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j0u3o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0igox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2itr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mi3gi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8slx3")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SpawnExplosion" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_j0u3o")
+script = ExtResource("2_cddwb")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
