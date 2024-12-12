@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://cmhcmlwn2aqnh"]
+[gd_scene load_steps=75 format=3 uid="uid://cmhcmlwn2aqnh"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_oaq16"]
 [ext_resource type="Texture2D" uid="uid://bxk4x2mu7f2ou" path="res://sprites/player/movement/idle/idle_down1.png" id="2_bpijs"]
@@ -60,6 +60,18 @@
 [ext_resource type="Texture2D" uid="uid://cvo3sp2gp61dp" path="res://sprites/player/movement/walk/walk_up4.png" id="27_crhji"]
 [ext_resource type="Texture2D" uid="uid://b5knyaukulp3f" path="res://sprites/player/movement/walk/walk_up5.png" id="28_6680m"]
 [ext_resource type="Texture2D" uid="uid://c2t05jncfsj4n" path="res://sprites/player/movement/walk/walk_up6.png" id="29_k5lo8"]
+[ext_resource type="Texture2D" uid="uid://btg6au4itwdvj" path="res://sprites/player/movement/slide/slide_down3.png" id="31_bvf04"]
+[ext_resource type="Texture2D" uid="uid://clpn7wd400m2v" path="res://sprites/player/movement/slide/slide_down4.png" id="32_ugibr"]
+[ext_resource type="Texture2D" uid="uid://cg5hbgemfyg4d" path="res://sprites/player/movement/slide/slide_down5.png" id="33_su417"]
+[ext_resource type="Texture2D" uid="uid://ccypgmv3xmb31" path="res://sprites/player/movement/slide/slide_left3.png" id="35_v3oq1"]
+[ext_resource type="Texture2D" uid="uid://cu5bpyjfq71i4" path="res://sprites/player/movement/slide/slide_left4.png" id="36_tggup"]
+[ext_resource type="Texture2D" uid="uid://bp2ntop4y8nsv" path="res://sprites/player/movement/slide/slide_left5.png" id="37_7bukw"]
+[ext_resource type="Texture2D" uid="uid://u2yna4yft764" path="res://sprites/player/movement/slide/slide_right3.png" id="39_gfhmu"]
+[ext_resource type="Texture2D" uid="uid://7yrqd8bqnf0a" path="res://sprites/player/movement/slide/slide_right4.png" id="40_ic6dn"]
+[ext_resource type="Texture2D" uid="uid://cmq55k144dauo" path="res://sprites/player/movement/slide/slide_right5.png" id="41_d0fj8"]
+[ext_resource type="Texture2D" uid="uid://duugkq6lybsr8" path="res://sprites/player/movement/slide/slide_up3.png" id="43_hebji"]
+[ext_resource type="Texture2D" uid="uid://cpppl1sixddlr" path="res://sprites/player/movement/slide/slide_up4.png" id="44_dpfn5"]
+[ext_resource type="Texture2D" uid="uid://3i3735xd02p1" path="res://sprites/player/movement/slide/slide_up5.png" id="45_y8u7w"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_83jlx"]
 animations = [{
@@ -189,6 +201,62 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("31_bvf04")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_ugibr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_su417")
+}],
+"loop": true,
+"name": &"slide_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("35_v3oq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_tggup")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_7bukw")
+}],
+"loop": true,
+"name": &"slide_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("39_gfhmu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_ic6dn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_d0fj8")
+}],
+"loop": true,
+"name": &"slide_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("43_hebji")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_dpfn5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_y8u7w")
+}],
+"loop": true,
+"name": &"slide_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("6_1xqkg")
 }, {
 "duration": 1.0,
@@ -290,7 +358,7 @@ script = ExtResource("1_oaq16")
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_83jlx")
-animation = &"dash_down"
+animation = &"slide_down"
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -326,7 +394,7 @@ script = ExtResource("7_waao1")
 idle_state = NodePath("../idle")
 dash_state = NodePath("../dash")
 brake_state = NodePath("../brake")
-animation_name = "idle"
+animation_name = "slide"
 
 [node name="brake" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state")]
 script = ExtResource("11_sr0os")

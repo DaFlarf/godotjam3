@@ -15,6 +15,7 @@ var room_beaten = false
 @onready var door_container: Node2D = get_node("Doors")
 @onready var enemy_positions_container: Node2D = get_node("EnemyPositions")
 @onready var player_detector: Area2D = get_node("PlayerDetector")
+@onready var exit_detector: Area2D = get_node("ExitZones")
 @onready var entrance: Node2D = get_node("Entrance")
 @onready var wall_container: Node2D = get_node("Walls")
 
@@ -22,17 +23,25 @@ var room_beaten = false
 func _ready() -> void:
 	num_enemies = enemy_positions_container.get_child_count()
 	player_detector.set_deferred("monitoring", true)
+	exit_detector.set_deferred("monitoring", false)
 
-func _on_enemy_killed() -> void:
+func _on_enemy_left() -> void:
 	num_enemies -= 1
 	if num_enemies <= 0:
 		_open_doors()
 		_remove_walls()
+
+func _on_enemy_killed() -> void:
+	num_enemies -= 1
+	if num_enemies <= 0:
 		room_beaten = true
+		_open_doors()
+		_remove_walls()
 
 func _open_doors() -> void:
-	for door in door_container.get_children():
-		door.open()
+	if room_beaten:
+		for door in door_container.get_children():
+			door.open()
 	for wall in wall_container.get_children():
 		wall.queue_free()
 
@@ -51,7 +60,9 @@ func _remove_walls():
 func _spawn_enemies() -> void:
 	for enemy_position in enemy_positions_container.get_children():
 		var enemy: CharacterBody2D = ENEMY_SCENES.ENEMY.instantiate()
-		var __ = enemy.connect("tree_exited", func f():
+		var __ = enemy.connect("leaving", func f():
+			_on_enemy_left())
+		var ___ = enemy.connect("dead", func f():
 			_on_enemy_killed())
 		enemy.global_position = enemy_position.global_position
 		call_deferred("add_child", enemy)
@@ -63,13 +74,19 @@ func _spawn_enemies() -> void:
 
 func _on_player_detector_body_entered(body: CharacterBody2D) -> void:
 	player_detector.set_deferred("monitoring", false)
+	exit_detector.set_deferred("monitoring", true)
 	if num_enemies > 0:
-		if (!room_beaten):
+		if (room_beaten == false):
 			_close_entrance()
-		_spawn_enemies()
+			_spawn_enemies()
 	else:
 		_open_doors()
 
 func _reset():
 	num_enemies = enemy_positions_container.get_child_count()
 	player_detector.set_deferred("monitoring", true)
+
+
+func _on_exit_zones_body_entered(body: CharacterBody2D) -> void:
+	Events.emit_signal("player_ran_away")
+	_reset()

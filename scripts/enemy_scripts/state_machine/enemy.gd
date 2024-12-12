@@ -7,10 +7,19 @@ extends CharacterBody2D
 @onready var state_machine: Node = $state_machine
 @onready var player: CharacterBody2D = get_tree().current_scene.get_node("player")
 var dir: String = "_right"
+signal leaving
+signal dead
 
 func _ready() -> void:
 	#set up state machine
 	state_machine.init(self, animations, move_component)
+	Events.player_ran_away.connect(func():
+		delete_self()
+		)
+
+func delete_self():
+	emit_signal("leaving")
+	queue_free()
 
 func _physics_process(delta: float) -> void:
 	state_machine.process_physics(delta)
