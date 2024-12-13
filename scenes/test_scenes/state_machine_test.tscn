@@ -1,12 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://c3y08i3ytkksw"]
+[gd_scene load_steps=12 format=3 uid="uid://c3y08i3ytkksw"]
 
 [ext_resource type="PackedScene" uid="uid://dap8ikt4vlujw" path="res://scenes/room_scenes/room1.tscn" id="1_kokjy"]
 [ext_resource type="PackedScene" uid="uid://cmhcmlwn2aqnh" path="res://scenes/player/player.tscn" id="1_mfy4q"]
 [ext_resource type="Script" path="res://scenes/test_scenes/state_machine_test.gd" id="1_sei8v"]
 [ext_resource type="PackedScene" uid="uid://b6hab55ck5ghi" path="res://scenes/room_scenes/room2.tscn" id="2_qq40o"]
 [ext_resource type="PackedScene" uid="uid://cr1bw3ynaubsk" path="res://scenes/room_scenes/start_room.tscn" id="3_q1aru"]
+[ext_resource type="PackedScene" uid="uid://bt7n8pv6wdrk1" path="res://scenes/room_scenes/room3.tscn" id="5_g7b1o"]
 [ext_resource type="AudioStream" uid="uid://fko28k26rfr2" path="res://audio/music/e.mp3" id="6_0q7j8"]
 [ext_resource type="Script" path="res://scenes/room_scenes/bgm.gd" id="6_4sxss"]
+[ext_resource type="PackedScene" uid="uid://dkw2ca3d7p5eh" path="res://scenes/room_scenes/room4.tscn" id="6_qbh3x"]
 [ext_resource type="AudioStream" uid="uid://djhpg1ymq7s75" path="res://audio/music/SoldMySoulToSega.mp3" id="7_fbwbv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0krdj"]
@@ -25,8 +27,14 @@ position = Vector2(1344, -896)
 [node name="Room3" parent="Rooms" instance=ExtResource("3_q1aru")]
 position = Vector2(768, 1472)
 
+[node name="Room4" parent="Rooms" instance=ExtResource("5_g7b1o")]
+position = Vector2(2752, 256)
+
+[node name="Room5" parent="Rooms" instance=ExtResource("6_qbh3x")]
+position = Vector2(3392, 576)
+
 [node name="player" parent="." instance=ExtResource("1_mfy4q")]
-position = Vector2(1367, 2199)
+position = Vector2(1419, 2722)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 
