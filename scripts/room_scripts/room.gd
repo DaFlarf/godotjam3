@@ -5,7 +5,7 @@ const SPAWN_EXPLOSION_SCENE: PackedScene = preload("res://scenes/enemy_scenes/ef
 const WALL_SCENE: PackedScene = preload("res://scenes/room_scenes/wall.tscn")
 
 const ENEMY_SCENES: Dictionary = {
-	"ENEMY": preload("res://scenes/enemy_scenes/state_machine/enemy.tscn")
+	"BAT": preload("res://scenes/enemy_scenes/bat/bat.tscn")
 }
 
 var num_enemies: int
@@ -59,7 +59,7 @@ func _remove_walls():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _spawn_enemies() -> void:
 	for enemy_position in enemy_positions_container.get_children():
-		var enemy: CharacterBody2D = ENEMY_SCENES.ENEMY.instantiate()
+		var enemy: CharacterBody2D = ENEMY_SCENES.BAT.instantiate()
 		var __ = enemy.connect("leaving", func f():
 			_on_enemy_left())
 		var ___ = enemy.connect("dead", func f():

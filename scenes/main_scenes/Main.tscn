@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://bujhu8u03n6ew"]
+
+[ext_resource type="Script" path="res://scenes/main_scenes/main.gd" id="1_7kmo1"]
+[ext_resource type="Texture2D" uid="uid://br2flblnci1lg" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/tiles/wall/wall_top_inner_right_2.png" id="1_bee41"]
+[ext_resource type="Texture2D" uid="uid://bbvo1mskbbcyp" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/tiles/wall/wall_side_left .png" id="2_wf6jg"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_7kmo1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1152, 648)
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.4, 0.223529, 0.192157, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_top = 487.0
+offset_right = 40.0
+offset_bottom = 527.0
+scale = Vector2(4, 4)
+texture = ExtResource("1_bee41")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 989.0
+offset_top = 487.0
+offset_right = 1029.0
+offset_bottom = 527.0
+scale = Vector2(4, 4)
+texture = ExtResource("1_bee41")
+flip_h = true
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+offset_left = 992.0
+offset_top = 1.0
+offset_right = 1032.0
+offset_bottom = 41.0
+scale = Vector2(4, 4)
+texture = ExtResource("1_bee41")
+flip_h = true
+flip_v = true
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+offset_top = -5.0
+offset_right = 40.0
+offset_bottom = 35.0
+scale = Vector2(4, 4)
+texture = ExtResource("1_bee41")
+flip_v = true
+
+[node name="PlayButton" type="TextureButton" parent="."]
+offset_left = 534.0
+offset_top = 264.0
+offset_right = 550.0
+offset_bottom = 280.0
+scale = Vector2(6, 6)
+texture_normal = ExtResource("2_wf6jg")
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]

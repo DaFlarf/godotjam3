@@ -10,12 +10,16 @@ var slide_timer
 
 var movement: Vector2
 
+@onready var SlideSFX = $SlideSFX
+
 func enter() -> void:
 	find_direction()
 	movement = get_movement_input() 
 	movement = movement.normalized()
 	slide_timer = slide_duration
 	parent.velocity = movement * (parent.velocity.length() + 10)
+	parent.disable_hurtbox()
+	SlideSFX.play()
 
 func process_physics(delta: float) -> State:
 	slide_timer -= delta
@@ -35,3 +39,4 @@ func process_input(event: InputEvent) -> State:
 
 func exit() -> void:
 		parent.slide_cancel = false
+		parent.enable_hurtbox()

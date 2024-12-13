@@ -1,10 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3y08i3ytkksw"]
+[gd_scene load_steps=10 format=3 uid="uid://c3y08i3ytkksw"]
 
 [ext_resource type="PackedScene" uid="uid://dap8ikt4vlujw" path="res://scenes/room_scenes/room1.tscn" id="1_kokjy"]
 [ext_resource type="PackedScene" uid="uid://cmhcmlwn2aqnh" path="res://scenes/player/player.tscn" id="1_mfy4q"]
+[ext_resource type="Script" path="res://scenes/test_scenes/state_machine_test.gd" id="1_sei8v"]
 [ext_resource type="PackedScene" uid="uid://b6hab55ck5ghi" path="res://scenes/room_scenes/room2.tscn" id="2_qq40o"]
+[ext_resource type="PackedScene" uid="uid://cr1bw3ynaubsk" path="res://scenes/room_scenes/start_room.tscn" id="3_q1aru"]
+[ext_resource type="AudioStream" uid="uid://fko28k26rfr2" path="res://audio/music/e.mp3" id="6_0q7j8"]
+[ext_resource type="Script" path="res://scenes/room_scenes/bgm.gd" id="6_4sxss"]
+[ext_resource type="AudioStream" uid="uid://djhpg1ymq7s75" path="res://audio/music/SoldMySoulToSega.mp3" id="7_fbwbv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0krdj"]
+size = Vector2(128.25, 61)
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_sei8v")
 
 [node name="Rooms" type="Node2D" parent="."]
 
@@ -13,7 +22,36 @@
 [node name="Room2" parent="Rooms" instance=ExtResource("2_qq40o")]
 position = Vector2(1344, -896)
 
+[node name="Room3" parent="Rooms" instance=ExtResource("3_q1aru")]
+position = Vector2(768, 1472)
+
 [node name="player" parent="." instance=ExtResource("1_mfy4q")]
-position = Vector2(1405, 1527)
+position = Vector2(1367, 2199)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
+
+[node name="BGM" type="Node2D" parent="."]
+script = ExtResource("6_4sxss")
+
+[node name="opening_theme" type="AudioStreamPlayer" parent="BGM"]
+stream = ExtResource("6_0q7j8")
+volume_db = -5.0
+parameters/looping = true
+
+[node name="theme_of_guy" type="AudioStreamPlayer" parent="BGM"]
+stream = ExtResource("7_fbwbv")
+parameters/looping = true
+
+[node name="opening_theme_trigger" type="Area2D" parent="BGM"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BGM/opening_theme_trigger"]
+position = Vector2(1407.88, 1373.5)
+shape = SubResource("RectangleShape2D_0krdj")
+debug_color = Color(0.656663, 0.511894, 0.1919, 0.42)
+
+[node name="theme_of_guy_trigger" type="Area2D" parent="BGM"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BGM/theme_of_guy_trigger"]
+debug_color = Color(0.646214, 0.517959, 0.176497, 0.42)
+
+[connection signal="body_entered" from="BGM/opening_theme_trigger" to="BGM" method="_on_opening_theme_trigger_body_entered"]

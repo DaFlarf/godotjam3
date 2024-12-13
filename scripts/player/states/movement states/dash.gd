@@ -8,9 +8,13 @@ extends State
 @export var time_to_dash:= 0.09
 @export var dash_duration:= 0.2
 @export var dash_speed:= 1000
+
+@onready var DashSFX = $DashSFX
+
 var dash_timer = 0.0
 var exit_dash_timer = 0.0
 var movement: Vector2
+var played_audio = false
 
 func enter() -> void:
 	find_direction()
@@ -35,6 +39,7 @@ func process_input(event: InputEvent) -> State:
 func process_physics(delta:float) -> State:
 	dash_timer -= delta
 	if dash_timer <= 0.0:
+		play_audio()
 		exit_dash_timer -= delta
 		
 		#if dash is over
@@ -50,9 +55,14 @@ func process_physics(delta:float) -> State:
 			parent.velocity = movement * dash_speed
 		else:
 			parent.velocity = movement * parent.velocity.length()
-		print(parent.velocity.length())
 		parent.move_and_slide()	
 	return null
 
+func play_audio():
+	if played_audio == false:
+		DashSFX.play()
+		played_audio = true
+
 func exit()-> void:
 	parent.dash_cancel = false
+	played_audio = false

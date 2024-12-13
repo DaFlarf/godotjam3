@@ -1,7 +1,12 @@
+class_name State_machine
 extends Node
 
 @export
 var starting_state: State
+@export
+var hitstun_state: State
+@export
+var death_state: State
 
 var current_state: State
 

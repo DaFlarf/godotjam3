@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://ud1xpmpv4qyq"]
+
+[ext_resource type="Script" path="res://scripts/main_scripts/scene_changer.gd" id="1_2043m"]
+
+[sub_resource type="Animation" id="Animation_ccmew"]
+resource_name = "Fade In Out"
+length = 1.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.145098), Color(1, 1, 1, 0.27451), Color(1, 1, 1, 0.396078), Color(1, 1, 1, 0.529412), Color(1, 1, 1, 0.627451), Color(1, 1, 1, 0.721569), Color(1, 1, 1, 0.721569), Color(1, 1, 1, 0.854902), Color(1, 1, 1, 1), Color(1, 1, 1, 0.854902), Color(1, 1, 1, 0.607843), Color(1, 1, 1, 0.435294), Color(1, 1, 1, 0.32549), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_new_scene"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_wwsnj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kwk0t"]
+_data = {
+"Fade In Out": SubResource("Animation_ccmew"),
+"RESET": SubResource("Animation_wwsnj")
+}
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_2043m")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 10
+custom_minimum_size = Vector2(1152, 648)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kwk0t")
+}
