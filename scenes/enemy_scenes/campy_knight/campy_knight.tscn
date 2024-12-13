@@ -1,0 +1,130 @@
+[gd_scene load_steps=15 format=3 uid="uid://c1er73wry7yy7"]
+
+[ext_resource type="PackedScene" uid="uid://cfxqiknbqe2vm" path="res://scenes/enemy_scenes/state_machine/enemy.tscn" id="1_tev3f"]
+[ext_resource type="Script" path="res://scripts/enemy_scripts/CampyKnight/campy_knight.gd" id="2_1577x"]
+[ext_resource type="Texture2D" uid="uid://3ew5ih1gk1l7" path="res://sprites/enemies/knight/movement/walk/WALK PREVIEW-export1.png" id="3_wnfkl"]
+[ext_resource type="Texture2D" uid="uid://7866qkbq2wn8" path="res://sprites/enemies/knight/movement/walk/WALK PREVIEW-export7.png" id="4_6xh57"]
+[ext_resource type="Texture2D" uid="uid://bs5cs6ubag0ep" path="res://sprites/enemies/knight/movement/walk/WALK PREVIEW-export2.png" id="4_bqpwa"]
+[ext_resource type="Texture2D" uid="uid://c3qw3hgouibi" path="res://sprites/enemies/knight/movement/walk/WALK PREVIEW-export4.png" id="5_rf48j"]
+[ext_resource type="Texture2D" uid="uid://b1k1pwiqmck1h" path="res://sprites/enemies/knight/movement/walk/WALK PREVIEW-export6.png" id="6_2sujv"]
+[ext_resource type="Texture2D" uid="uid://cpnhk4n0y7i5b" path="res://sprites/enemies/knight/movement/walk/WALK PREVIEW-export8.png" id="6_yi0wq"]
+[ext_resource type="Script" path="res://scenes/enemy_scenes/campy_knight/CK-idle.gd" id="7_ij4f0"]
+[ext_resource type="Texture2D" uid="uid://bkxywfuwq1n37" path="res://sprites/enemies/knight/movement/walk/WALK PREVIEW-export3.png" id="7_vscpj"]
+[ext_resource type="Script" path="res://scenes/enemy_scenes/campy_knight/CK-chase.gd" id="8_m20y0"]
+[ext_resource type="Texture2D" uid="uid://bt3vwqxlpcp00" path="res://sprites/enemies/knight/movement/walk/WALK PREVIEW-export5.png" id="9_d5hlq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8g4yh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_wnfkl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bqpwa")
+}],
+"loop": true,
+"name": &"chase_down",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_6xh57")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_yi0wq")
+}],
+"loop": true,
+"name": &"chase_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_vscpj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rf48j")
+}],
+"loop": true,
+"name": &"chase_right",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_d5hlq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2sujv")
+}],
+"loop": true,
+"name": &"chase_up",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_wnfkl")
+}],
+"loop": true,
+"name": &"default_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_6xh57")
+}],
+"loop": true,
+"name": &"default_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_rf48j")
+}],
+"loop": true,
+"name": &"default_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_2sujv")
+}],
+"loop": true,
+"name": &"default_up",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e4bf0"]
+radius = 12.3693
+
+[node name="CampyKnight" instance=ExtResource("1_tev3f")]
+script = ExtResource("2_1577x")
+projectile_speed = 150
+
+[node name="animations" parent="." index="0"]
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_8g4yh")
+animation = &"chase_down"
+
+[node name="collision" parent="." index="1"]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_e4bf0")
+
+[node name="state_machine" parent="." index="2" node_paths=PackedStringArray("starting_state")]
+starting_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="state_machine" index="0" node_paths=PackedStringArray("chase_state")]
+script = ExtResource("7_ij4f0")
+chase_state = NodePath("../chase")
+animation_name = "default"
+move_speed = 400.0
+
+[node name="chase" type="Node" parent="state_machine" index="1" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("8_m20y0")
+idle_state = NodePath("../idle")
+animation_name = "chase"
+move_speed = 100.0
+
+[node name="AttackTimer" type="Timer" parent="." index="5"]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

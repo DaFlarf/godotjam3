@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c3y08i3ytkksw"]
+[gd_scene load_steps=19 format=3 uid="uid://c3y08i3ytkksw"]
 
 [ext_resource type="PackedScene" uid="uid://dap8ikt4vlujw" path="res://scenes/room_scenes/room1.tscn" id="1_kokjy"]
 [ext_resource type="PackedScene" uid="uid://cmhcmlwn2aqnh" path="res://scenes/player/player.tscn" id="1_mfy4q"]
@@ -10,6 +10,13 @@
 [ext_resource type="Script" path="res://scenes/room_scenes/bgm.gd" id="6_4sxss"]
 [ext_resource type="PackedScene" uid="uid://dkw2ca3d7p5eh" path="res://scenes/room_scenes/room4.tscn" id="6_qbh3x"]
 [ext_resource type="AudioStream" uid="uid://djhpg1ymq7s75" path="res://audio/music/SoldMySoulToSega.mp3" id="7_fbwbv"]
+[ext_resource type="PackedScene" uid="uid://c2el77iog7xty" path="res://scenes/room_scenes/room5.tscn" id="7_ygfn5"]
+[ext_resource type="PackedScene" uid="uid://d255khrbgfi83" path="res://scenes/room_scenes/room6.tscn" id="8_0wj8h"]
+[ext_resource type="PackedScene" uid="uid://dr7jmmrq0e7x" path="res://scenes/room_scenes/room7.tscn" id="9_4aa60"]
+[ext_resource type="PackedScene" uid="uid://jr0xgves25lb" path="res://scenes/room_scenes/room8.tscn" id="10_bbwmh"]
+[ext_resource type="PackedScene" uid="uid://dtkxdayey3ani" path="res://scenes/room_scenes/room9.tscn" id="11_gxuqw"]
+[ext_resource type="PackedScene" uid="uid://bxumf872lhge" path="res://scenes/room_scenes/room10.tscn" id="12_mnewu"]
+[ext_resource type="PackedScene" uid="uid://dvtynmbperxq1" path="res://scenes/main_scenes/speedrun_timer.tscn" id="17_676n7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0krdj"]
 size = Vector2(128.25, 61)
@@ -32,6 +39,24 @@ position = Vector2(2752, 256)
 
 [node name="Room5" parent="Rooms" instance=ExtResource("6_qbh3x")]
 position = Vector2(3392, 576)
+
+[node name="Room6" parent="Rooms" instance=ExtResource("7_ygfn5")]
+position = Vector2(2944, -1408)
+
+[node name="Room7" parent="Rooms" instance=ExtResource("8_0wj8h")]
+position = Vector2(128, -256)
+
+[node name="Room8" parent="Rooms" instance=ExtResource("9_4aa60")]
+position = Vector2(-320, -1024)
+
+[node name="Room9" parent="Rooms" instance=ExtResource("10_bbwmh")]
+position = Vector2(-824, -704)
+
+[node name="Room10" parent="Rooms" instance=ExtResource("11_gxuqw")]
+position = Vector2(2240, -1792)
+
+[node name="Room11" parent="Rooms" instance=ExtResource("12_mnewu")]
+position = Vector2(320, -2240)
 
 [node name="player" parent="." instance=ExtResource("1_mfy4q")]
 position = Vector2(1419, 2722)
@@ -61,5 +86,7 @@ debug_color = Color(0.656663, 0.511894, 0.1919, 0.42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BGM/theme_of_guy_trigger"]
 debug_color = Color(0.646214, 0.517959, 0.176497, 0.42)
+
+[node name="CanvasLayer" parent="." instance=ExtResource("17_676n7")]
 
 [connection signal="body_entered" from="BGM/opening_theme_trigger" to="BGM" method="_on_opening_theme_trigger_body_entered"]
