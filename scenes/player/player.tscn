@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://cmhcmlwn2aqnh"]
+[gd_scene load_steps=76 format=3 uid="uid://cmhcmlwn2aqnh"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_oaq16"]
 [ext_resource type="Texture2D" uid="uid://bxk4x2mu7f2ou" path="res://sprites/player/movement/idle/idle_down1.png" id="2_bpijs"]
@@ -72,6 +72,8 @@
 [ext_resource type="Texture2D" uid="uid://duugkq6lybsr8" path="res://sprites/player/movement/slide/slide_up3.png" id="43_hebji"]
 [ext_resource type="Texture2D" uid="uid://cpppl1sixddlr" path="res://sprites/player/movement/slide/slide_up4.png" id="44_dpfn5"]
 [ext_resource type="Texture2D" uid="uid://3i3735xd02p1" path="res://sprites/player/movement/slide/slide_up5.png" id="45_y8u7w"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m664d"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_83jlx"]
 animations = [{
@@ -354,7 +356,11 @@ height = 62.0
 
 [node name="player" type="CharacterBody2D"]
 collision_mask = 3
+motion_mode = 1
 script = ExtResource("1_oaq16")
+
+[node name="gun_animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m664d")
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_83jlx")

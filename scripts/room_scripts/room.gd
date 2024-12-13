@@ -64,11 +64,11 @@ func _spawn_enemies() -> void:
 			_on_enemy_left())
 		var ___ = enemy.connect("dead", func f():
 			_on_enemy_killed())
-		enemy.global_position = enemy_position.global_position
+		enemy.position = enemy_position.position
 		call_deferred("add_child", enemy)
 		
 		var spawn_explosion: AnimatedSprite2D = SPAWN_EXPLOSION_SCENE.instantiate()
-		spawn_explosion.global_position = enemy_position.global_position
+		spawn_explosion.position = enemy_position.position
 		call_deferred("add_child", spawn_explosion)
 
 
@@ -78,7 +78,7 @@ func _on_player_detector_body_entered(body: CharacterBody2D) -> void:
 	if num_enemies > 0:
 		if (room_beaten == false):
 			_close_entrance()
-			_spawn_enemies()
+		_spawn_enemies()
 	else:
 		_open_doors()
 

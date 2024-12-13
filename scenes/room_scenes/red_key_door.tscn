@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7joyboe7un3e"]
+
+[ext_resource type="PackedScene" uid="uid://cpcsn615hmgyo" path="res://scenes/room_scenes/locked_door.tscn" id="1_1qh0w"]
+[ext_resource type="Script" path="res://scripts/room_scripts/red_key_door.gd" id="2_d40sy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pnmmx"]
+size = Vector2(125, 112)
+
+[node name="LockedDoor" instance=ExtResource("1_1qh0w")]
+script = ExtResource("2_d40sy")
+
+[node name="Area2D" type="Area2D" parent="." index="3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0.5, 8)
+shape = SubResource("RectangleShape2D_pnmmx")
+debug_color = Color(0.900498, 0.273347, 0.391389, 0.42)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

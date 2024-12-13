@@ -2,6 +2,7 @@ extends Enemy_state
 
 @export 
 var idle_state: State
+var movement: Vector2
 
 func enter():
 	find_direction()
@@ -10,7 +11,10 @@ func process_physics(delta: float) -> State:
 	
 	#check player speed
 	var current_speed = abs(parent.velocity.length())
-	var movement = target(parent.player.global_position)
+	if (parent.player != null):
+		movement = target(parent.player.global_position)
+	else:
+		movement = Vector2.ZERO
 	if (movement == Vector2.ZERO):
 		return idle_state
 	

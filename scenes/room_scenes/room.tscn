@@ -1,37 +1,24 @@
-[gd_scene load_steps=8 format=4 uid="uid://bx5fjserd040x"]
+[gd_scene load_steps=4 format=3 uid="uid://bx5fjserd040x"]
 
 [ext_resource type="TileSet" uid="uid://cbg1eym0o7j7c" path="res://resources/tilesets/room.tres" id="1_a5o1s"]
 [ext_resource type="Script" path="res://scripts/room_scripts/room.gd" id="1_qgrmu"]
-[ext_resource type="PackedScene" uid="uid://cpcsn615hmgyo" path="res://scenes/room_scenes/locked_door.tscn" id="2_68xq3"]
 [ext_resource type="Script" path="res://scenes/room_scenes/navigation_tile_layer.gd" id="3_dslbh"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p206f"]
-size = Vector2(126, 63)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g30je"]
-size = Vector2(125, 62)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cukpb"]
-size = Vector2(61, 62)
 
 [node name="Room" type="Node2D"]
 script = ExtResource("1_qgrmu")
 
 [node name="Floor" type="TileMapLayer" parent="."]
 scale = Vector2(4, 4)
-tile_map_data = PackedByteArray("AAACAAgAAAAEAAYAAAACAAcAAAAEAAUAAAACAAQAAAAEAAUAAAAEAAMAAAAIAAUAAAADAAMAAAAHAAQAAAACAAMAAAAEAAUAAAACAAIAAAAEAAQAAAADAAIAAAACAAYAAAAEAAIAAAACAAYAAAAHAAIAAAACAAYAAAAIAAIAAAACAAYAAAAJAAIAAAACAAYAAAAKAAIAAAACAAYAAAALAAIAAAACAAYAAAAMAAIAAAADAAQAAAAMAAMAAAADAAUAAAAMAAQAAAADAAUAAAAKAAgAAAADAAYAAAAHAAMAAAAHAAQAAAAIAAMAAAAIAAUAAAAJAAMAAAAHAAQAAAAKAAMAAAAHAAQAAAALAAMAAAAIAAUAAAADAAQAAAADAAEAAAAEAAQAAAADAAEAAAAFAAQAAAADAAEAAAAGAAQAAAADAAEAAAAHAAQAAAADAAEAAAAIAAQAAAADAAEAAAAJAAQAAAADAAEAAAAKAAQAAAADAAEAAAALAAQAAAADAAEAAAADAAUAAAADAAEAAAAEAAUAAAADAAEAAAAFAAUAAAADAAEAAAAGAAUAAAADAAEAAAAHAAUAAAADAAEAAAAIAAUAAAADAAEAAAAJAAUAAAADAAEAAAAKAAUAAAADAAEAAAALAAUAAAADAAEAAAADAAYAAAADAAEAAAAEAAYAAAADAAEAAAAFAAYAAAADAAEAAAAGAAYAAAADAAEAAAAHAAYAAAADAAEAAAAIAAYAAAADAAEAAAAJAAYAAAADAAEAAAAKAAYAAAADAAEAAAALAAYAAAADAAEAAAADAAcAAAADAAEAAAAEAAcAAAADAAEAAAAFAAcAAAADAAEAAAAGAAcAAAADAAEAAAAHAAcAAAADAAEAAAAIAAcAAAADAAEAAAAJAAcAAAADAAEAAAAKAAcAAAADAAEAAAALAAcAAAADAAEAAAADAAgAAAADAAEAAAAEAAgAAAADAAEAAAAFAAgAAAADAAEAAAAGAAgAAAADAAEAAAAHAAgAAAADAAEAAAAIAAgAAAADAAEAAAAJAAgAAAADAAEAAAAMAAcAAAADAAYAAAA=")
 tile_set = ExtResource("1_a5o1s")
 script = ExtResource("3_dslbh")
 
 [node name="top walls" type="TileMapLayer" parent="."]
 scale = Vector2(4, 4)
-tile_map_data = PackedByteArray("AAACAAgAAAAEAAYAAAACAAcAAAAEAAUAAAACAAQAAAAEAAUAAAAEAAMAAAAIAAUAAAADAAMAAAAHAAQAAAACAAMAAAAEAAUAAAACAAIAAAAEAAQAAAADAAIAAAACAAYAAAAEAAIAAAACAAYAAAAHAAIAAAACAAYAAAAIAAIAAAACAAYAAAAJAAIAAAACAAYAAAAKAAIAAAACAAYAAAALAAIAAAACAAYAAAAMAAIAAAADAAQAAAAMAAMAAAADAAUAAAAMAAQAAAADAAUAAAAKAAgAAAADAAYAAAAHAAMAAAAHAAQAAAAIAAMAAAAIAAUAAAAJAAMAAAAHAAQAAAAKAAMAAAAHAAQAAAALAAMAAAAIAAUAAAA=")
 tile_set = ExtResource("1_a5o1s")
 
 [node name="bottom walls" type="TileMapLayer" parent="."]
-z_index = 1
+z_index = 2
 scale = Vector2(4, 4)
-tile_map_data = PackedByteArray("AAAKAAcAAAACAAcAAAALAAcAAAACAAcAAAAMAAcAAAADAAYAAAAJAAgAAAACAAcAAAAGAAgAAAACAAcAAAAFAAgAAAACAAcAAAAEAAgAAAACAAcAAAADAAgAAAACAAcAAAA=")
 tile_set = ExtResource("1_a5o1s")
 
 [node name="Furniture map" type="TileMapLayer" parent="."]
@@ -40,65 +27,15 @@ tile_set = ExtResource("1_a5o1s")
 
 [node name="Entrance" type="Node2D" parent="."]
 
-[node name="Marker2D" type="Marker2D" parent="Entrance"]
-position = Vector2(541, 540)
-
-[node name="Marker2D2" type="Marker2D" parent="Entrance"]
-position = Vector2(477, 540)
-
 [node name="Doors" type="Node2D" parent="."]
-
-[node name="LockedDoor" parent="Doors" instance=ExtResource("2_68xq3")]
-position = Vector2(384, 192)
 
 [node name="EnemyPositions" type="Node2D" parent="."]
 
-[node name="Marker2D" type="Marker2D" parent="EnemyPositions"]
-position = Vector2(668, 346)
-
-[node name="Marker2D2" type="Marker2D" parent="EnemyPositions"]
-position = Vector2(224, 349)
-
-[node name="Marker2D3" type="Marker2D" parent="EnemyPositions"]
-position = Vector2(538, 285)
-
 [node name="PlayerDetector" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-position = Vector2(510, 414)
-shape = SubResource("RectangleShape2D_p206f")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerDetector"]
-position = Vector2(382.5, 286)
-shape = SubResource("RectangleShape2D_g30je")
 
 [node name="Walls" type="Node2D" parent="."]
 
 [node name="ExitZones" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitZones"]
-position = Vector2(161, 350)
-shape = SubResource("RectangleShape2D_cukpb")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="ExitZones"]
-position = Vector2(161, 413)
-shape = SubResource("RectangleShape2D_cukpb")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="ExitZones"]
-position = Vector2(799, 348)
-shape = SubResource("RectangleShape2D_cukpb")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="ExitZones"]
-position = Vector2(800, 410)
-shape = SubResource("RectangleShape2D_cukpb")
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="ExitZones"]
-position = Vector2(477, 606)
-shape = SubResource("RectangleShape2D_cukpb")
-
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="ExitZones"]
-position = Vector2(542, 606)
-shape = SubResource("RectangleShape2D_cukpb")
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_entered" from="ExitZones" to="." method="_on_exit_zones_body_entered"]

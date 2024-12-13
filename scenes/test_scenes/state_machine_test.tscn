@@ -1,15 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3y08i3ytkksw"]
+[gd_scene load_steps=4 format=3 uid="uid://c3y08i3ytkksw"]
 
+[ext_resource type="PackedScene" uid="uid://dap8ikt4vlujw" path="res://scenes/room_scenes/room1.tscn" id="1_kokjy"]
 [ext_resource type="PackedScene" uid="uid://cmhcmlwn2aqnh" path="res://scenes/player/player.tscn" id="1_mfy4q"]
-[ext_resource type="PackedScene" uid="uid://bx5fjserd040x" path="res://scenes/room_scenes/room.tscn" id="1_o47nj"]
+[ext_resource type="PackedScene" uid="uid://b6hab55ck5ghi" path="res://scenes/room_scenes/room2.tscn" id="2_qq40o"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Rooms" type="Node2D" parent="."]
 
-[node name="Room" parent="Rooms" instance=ExtResource("1_o47nj")]
+[node name="Room" parent="Rooms" instance=ExtResource("1_kokjy")]
+
+[node name="Room2" parent="Rooms" instance=ExtResource("2_qq40o")]
+position = Vector2(1344, -896)
 
 [node name="player" parent="." instance=ExtResource("1_mfy4q")]
-position = Vector2(498, 626)
+position = Vector2(1405, 1527)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
