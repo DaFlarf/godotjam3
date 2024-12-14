@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bk24x2t5q5clf"]
 
 [ext_resource type="Script" path="res://scripts/enemy_scripts/CampyKnight/attacks/throwable_knife.gd" id="1_8mny1"]
-[ext_resource type="Texture2D" uid="uid://bhnhqf0ux5wjy" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/enemies/goblin/goblin_knife.png" id="2_hl56u"]
+[ext_resource type="Texture2D" uid="uid://ckwc3dcqe4te0" path="res://sprites/enemies/knight/blue knight/attack/more boolets.png" id="2_rmgt1"]
 [ext_resource type="PackedScene" uid="uid://dyqc5elgbcpsv" path="res://scenes/main_scenes/hitbox.tscn" id="3_hvifa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2jpum"]
@@ -17,7 +17,7 @@ script = ExtResource("1_8mny1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(4, 4)
-texture = ExtResource("2_hl56u")
+texture = ExtResource("2_rmgt1")
 
 [node name="Area2D" parent="." instance=ExtResource("3_hvifa")]
 

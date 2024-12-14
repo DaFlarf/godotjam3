@@ -14,10 +14,7 @@ func enter():
 	find_direction()
 	stun_timer = parent.hitstun_to_take
 	parent.health -= parent.damage_to_take
-	if parent.health <= 0:
-		return ded_state 
-	else:
-		ouch.play()
+	ouch.play()
 
 func process_physics(delta:float) -> State:
 	stun_timer -= delta

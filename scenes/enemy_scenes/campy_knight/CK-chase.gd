@@ -27,7 +27,7 @@ func process_physics(delta: float) -> State:
 	if (movement == Vector2.ZERO):
 		return idle_state
 	
-	parent.velocity = movement * move_speed
+	parent.use_velocity(movement * move_speed)
 	find_direction()
 	parent.move_and_slide()
 	

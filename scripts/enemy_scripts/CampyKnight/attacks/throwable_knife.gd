@@ -10,7 +10,7 @@ func launch(intitial_position: Vector2, dir: Vector2, speed: int) -> void:
 	direction = dir
 	knife_speed = speed
 	
-	rotation = dir.angle() + PI/4
+	rotation = dir.angle()
 	
 func _physics_process(delta: float) -> void:
 	position += direction * knife_speed * delta

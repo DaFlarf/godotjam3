@@ -1,6 +1,7 @@
-[gd_scene load_steps=115 format=3 uid="uid://cmhcmlwn2aqnh"]
+[gd_scene load_steps=131 format=3 uid="uid://cmhcmlwn2aqnh"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_oaq16"]
+[ext_resource type="PackedScene" uid="uid://cjsi74qd4q5c" path="res://scenes/player/boolets/pistol-boolet.tscn" id="2_3nh4l"]
 [ext_resource type="Texture2D" uid="uid://bxk4x2mu7f2ou" path="res://sprites/player/movement/idle/idle_down1.png" id="2_bpijs"]
 [ext_resource type="Texture2D" uid="uid://chwoqan6wwxmn" path="res://sprites/player/AK/Guns AK-export1.png" id="2_chmpa"]
 [ext_resource type="PackedScene" uid="uid://1rq6tt0w6o3w" path="res://scenes/state_machine/state_machine.tscn" id="2_xh24f"]
@@ -28,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://cp5kt7dtkwpel" path="res://sprites/player/movement/walk/walk_down2.png" id="7_6oyb5"]
 [ext_resource type="Texture2D" uid="uid://tyuc1dywskre" path="res://sprites/player/pistol/Guns Pistol-export4.png" id="7_d3dg0"]
 [ext_resource type="Texture2D" uid="uid://hajuthgyadd0" path="res://sprites/player/movement/dash/dash_left2.png" id="7_msmiw"]
+[ext_resource type="Texture2D" uid="uid://di4w4w8vxt7q7" path="res://sprites/player/shotgun/Guns Shotgun-export1.png" id="7_oiyk1"]
 [ext_resource type="Texture2D" uid="uid://b63cd0l8g1o3t" path="res://sprites/player/movement/walk/walk_right2.png" id="7_p82l0"]
 [ext_resource type="Texture2D" uid="uid://c50lpjvb7gif" path="res://sprites/player/movement/idle/idle_left2.png" id="7_to522"]
 [ext_resource type="Script" path="res://scripts/player/states/movement states/slide.gd" id="7_waao1"]
@@ -35,6 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://d2s8stjbk5cjb" path="res://sprites/player/Rocket Launcher/Guns RL-export4.png" id="8_8bitd"]
 [ext_resource type="Texture2D" uid="uid://bgfnxma1ji36y" path="res://sprites/player/movement/walk/walk_right3.png" id="8_g55oh"]
 [ext_resource type="Texture2D" uid="uid://cj106rgxg0nfm" path="res://sprites/player/movement/idle/idle_left3.png" id="8_h3ldw"]
+[ext_resource type="Texture2D" uid="uid://d2od3xy3q2g3m" path="res://sprites/player/sniper/Guns Sniper-export1.png" id="8_hhi4b"]
 [ext_resource type="Texture2D" uid="uid://c00n7ih7sqrx3" path="res://sprites/player/movement/walk/walk_down3.png" id="8_ms8pg"]
 [ext_resource type="Texture2D" uid="uid://ca6r263rm8lhp" path="res://sprites/player/movement/walk/walk_right4.png" id="9_6spk6"]
 [ext_resource type="Texture2D" uid="uid://dr04m24m61e80" path="res://sprites/player/movement/walk/walk_down4.png" id="9_c8bc2"]
@@ -56,9 +59,11 @@
 [ext_resource type="Texture2D" uid="uid://bbpdyq54oi4tv" path="res://sprites/player/movement/walk/walk_left1.png" id="12_x8b31"]
 [ext_resource type="Texture2D" uid="uid://xgrd08pomp3a" path="res://sprites/player/movement/idle/idle_right3.png" id="12_xny6a"]
 [ext_resource type="Texture2D" uid="uid://dw2rnartxbo5o" path="res://sprites/player/pistol/Guns Pistol-export3.png" id="13_c2bio"]
+[ext_resource type="Texture2D" uid="uid://ca22r6qp14b6i" path="res://sprites/player/shotgun/Guns Shotgun-export4.png" id="13_epaja"]
 [ext_resource type="Texture2D" uid="uid://bcft1hpqfa31x" path="res://sprites/player/movement/dash/dash_right4.png" id="13_o8f44"]
 [ext_resource type="Texture2D" uid="uid://bcm4sfw0kfpdk" path="res://sprites/player/movement/idle/idle_right4.png" id="13_rco7a"]
 [ext_resource type="Texture2D" uid="uid://del2fu7d4uvnt" path="res://sprites/player/movement/walk/walk_left2.png" id="13_v5bwe"]
+[ext_resource type="Texture2D" uid="uid://bhkw2dxe3bxxc" path="res://sprites/player/sniper/Guns Sniper-export4.png" id="14_1bmui"]
 [ext_resource type="Texture2D" uid="uid://kk5vqmgfb07j" path="res://sprites/player/movement/idle/idle_up1.png" id="14_51iwm"]
 [ext_resource type="Texture2D" uid="uid://dj1h0vtetlaa4" path="res://sprites/player/movement/walk/walk_left3.png" id="14_gg27k"]
 [ext_resource type="Texture2D" uid="uid://dqbnhgxtbb1rb" path="res://sprites/player/movement/walk/walk_left4.png" id="15_38d28"]
@@ -71,9 +76,13 @@
 [ext_resource type="Texture2D" uid="uid://dbhox2x5gkqcm" path="res://sprites/player/movement/idle/idle_up4.png" id="17_fcckm"]
 [ext_resource type="Texture2D" uid="uid://cldhde6hsg4q5" path="res://sprites/player/movement/dash/dash_up4.png" id="17_q1hda"]
 [ext_resource type="Texture2D" uid="uid://wl7iw7mf7lu8" path="res://sprites/player/movement/walk/walk_left6.png" id="17_wls6e"]
+[ext_resource type="Texture2D" uid="uid://baxawfe3x70r7" path="res://sprites/player/shotgun/Guns Shotgun-export2.png" id="19_bmqs3"]
+[ext_resource type="Texture2D" uid="uid://ddfyhymknogu1" path="res://sprites/player/sniper/Guns Sniper-export2.png" id="20_bvvse"]
 [ext_resource type="Texture2D" uid="uid://bgl664d2oowcp" path="res://sprites/player/movement/walk/walk_up1.png" id="24_btl1l"]
+[ext_resource type="Texture2D" uid="uid://bon86ls62r7qt" path="res://sprites/player/shotgun/Guns Shotgun-export3.png" id="25_kcy6a"]
 [ext_resource type="Texture2D" uid="uid://d0lkmddgv0ns5" path="res://sprites/player/movement/walk/walk_up2.png" id="25_rb7rr"]
 [ext_resource type="Texture2D" uid="uid://hajn4g67iwj4" path="res://sprites/player/movement/walk/walk_up3.png" id="26_i2rlm"]
+[ext_resource type="Texture2D" uid="uid://cxdkeptftjdai" path="res://sprites/player/sniper/Guns Sniper-export3.png" id="26_xgigj"]
 [ext_resource type="Texture2D" uid="uid://cvo3sp2gp61dp" path="res://sprites/player/movement/walk/walk_up4.png" id="27_crhji"]
 [ext_resource type="Texture2D" uid="uid://b5knyaukulp3f" path="res://sprites/player/movement/walk/walk_up5.png" id="28_6680m"]
 [ext_resource type="Texture2D" uid="uid://c2t05jncfsj4n" path="res://sprites/player/movement/walk/walk_up6.png" id="29_k5lo8"]
@@ -112,6 +121,13 @@
 [ext_resource type="AudioStream" uid="uid://ptcu3nxvw2j5" path="res://audio/sfx/player/movement/catch.wav" id="105_lag4m"]
 [ext_resource type="AudioStream" uid="uid://myorb0cypjmx" path="res://audio/sfx/player/movement/slash3.wav" id="107_50ve4"]
 [ext_resource type="AudioStream" uid="uid://8jmsmn1k7hf8" path="res://audio/sfx/player/movement/spy-death-sound-made-with-Voicemod.mp3" id="107_nxa15"]
+[ext_resource type="Script" path="res://scripts/player/states/gun_states/pistol.gd" id="112_ple4h"]
+[ext_resource type="Script" path="res://scripts/player/states/gun_states/shotgun.gd" id="113_pyo58"]
+[ext_resource type="Script" path="res://scripts/player/states/gun_states/sniper.gd" id="122_it5j0"]
+[ext_resource type="AudioStream" uid="uid://b51xtopuwdwiw" path="res://audio/sfx/player/guns/pistol_shoot.wav" id="122_r3aw0"]
+[ext_resource type="Script" path="res://scripts/player/states/gun_states/MP7.gd" id="123_06ha4"]
+[ext_resource type="Script" path="res://scripts/player/states/gun_states/AK.gd" id="124_8etkm"]
+[ext_resource type="Script" path="res://scripts/player/states/gun_states/rawketlauwncha.gd" id="125_ki325"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_m664d"]
 animations = [{
@@ -157,6 +173,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("7_oiyk1")
+}],
+"loop": true,
+"name": &"_downshotgun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_hhi4b")
+}],
+"loop": true,
+"name": &"_downsniper",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("3_bw8sw")
 }],
 "loop": true,
@@ -193,6 +225,22 @@ animations = [{
 }],
 "loop": true,
 "name": &"_leftpistol",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_epaja")
+}],
+"loop": true,
+"name": &"_leftshotgun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_1bmui")
+}],
+"loop": true,
+"name": &"_leftsniper",
 "speed": 5.0
 }, {
 "frames": [{
@@ -237,6 +285,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("19_bmqs3")
+}],
+"loop": true,
+"name": &"_rightshotgun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_bvvse")
+}],
+"loop": true,
+"name": &"_rightsniper",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("5_kkmcf")
 }],
 "loop": true,
@@ -273,6 +337,22 @@ animations = [{
 }],
 "loop": true,
 "name": &"_uppistol",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_kcy6a")
+}],
+"loop": true,
+"name": &"_upshotgun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_xgigj")
+}],
+"loop": true,
+"name": &"_upsniper",
 "speed": 5.0
 }]
 
@@ -362,7 +442,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("39_atpnp")
 }],
-"loop": true,
+"loop": false,
 "name": &"ded_down",
 "speed": 5.0
 }, {
@@ -394,7 +474,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("39_atpnp")
 }],
-"loop": true,
+"loop": false,
 "name": &"ded_left",
 "speed": 5.0
 }, {
@@ -458,7 +538,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("39_atpnp")
 }],
-"loop": true,
+"loop": false,
 "name": &"ded_up",
 "speed": 5.0
 }, {
@@ -747,18 +827,27 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="player" type="CharacterBody2D" groups=["player"]]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("first_gun_state", "pistol_state", "shotgun_state", "AK_state", "MP7_state", "Rocket_launcher_state", "sniper_state") groups=["player"]]
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_oaq16")
+first_gun_state = NodePath("gun_state_machine/Pistol")
+pistol_state = NodePath("gun_state_machine/Pistol")
+shotgun_state = NodePath("gun_state_machine/shotgun")
+AK_state = NodePath("gun_state_machine/AK")
+MP7_state = NodePath("gun_state_machine/MP7")
+Rocket_launcher_state = NodePath("gun_state_machine/RAWKETLAUWNCHA")
+sniper_state = NodePath("gun_state_machine/sniper")
+pistol_boolet_scene = ExtResource("2_3nh4l")
+pistol_boolet_speed = 600
 
 [node name="gun_animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_m664d")
-animation = &"_uppacifism"
+animation = &"_rightsniper"
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_83jlx")
-animation = &"ded_right"
+animation = &"ded_up"
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -829,9 +918,6 @@ volume_db = -17.0
 script = ExtResource("93_1718p")
 animation_name = "ded"
 
-[node name="PureAgony" type="AudioStreamPlayer" parent="state_machine/ded"]
-stream = ExtResource("107_nxa15")
-
 [node name="gun_state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("72_iwmuq")
 starting_state = NodePath("Pacifism")
@@ -839,6 +925,47 @@ starting_state = NodePath("Pacifism")
 [node name="Pacifism" type="Node" parent="gun_state_machine"]
 script = ExtResource("73_2rmid")
 gun_name = "pacifism"
+
+[node name="Pistol" type="Node" parent="gun_state_machine" node_paths=PackedStringArray("pacifism_state")]
+script = ExtResource("112_ple4h")
+pacifism_state = NodePath("../Pacifism")
+gun_name = "pistol"
+
+[node name="PistolCancelTimer" type="Timer" parent="gun_state_machine/Pistol"]
+wait_time = 0.2
+one_shot = true
+
+[node name="PistolFinishedTimer" type="Timer" parent="gun_state_machine/Pistol"]
+wait_time = 0.2
+one_shot = true
+
+[node name="pew-pew" type="AudioStreamPlayer" parent="gun_state_machine/Pistol"]
+stream = ExtResource("122_r3aw0")
+volume_db = -5.0
+
+[node name="shotgun" type="Node" parent="gun_state_machine" node_paths=PackedStringArray("pacifism_state")]
+script = ExtResource("113_pyo58")
+pacifism_state = NodePath("../Pacifism")
+gun_name = "shotgun"
+
+[node name="sniper" type="Node" parent="gun_state_machine" node_paths=PackedStringArray("pacifism_state")]
+script = ExtResource("122_it5j0")
+pacifism_state = NodePath("../Pacifism")
+gun_name = "sniper"
+
+[node name="MP7" type="Node" parent="gun_state_machine" node_paths=PackedStringArray("pacifism_state")]
+script = ExtResource("123_06ha4")
+pacifism_state = NodePath("../Pacifism")
+gun_name = "MP7"
+
+[node name="AK" type="Node" parent="gun_state_machine" node_paths=PackedStringArray("pacifism_state")]
+script = ExtResource("124_8etkm")
+pacifism_state = NodePath("../Pacifism")
+
+[node name="RAWKETLAUWNCHA" type="Node" parent="gun_state_machine" node_paths=PackedStringArray("pacifism_state")]
+script = ExtResource("125_ki325")
+pacifism_state = NodePath("../Pacifism")
+gun_name = "RAWKETLAUNCHA"
 
 [node name="move_component" type="Node" parent="."]
 script = ExtResource("3_p7n7k")
@@ -852,4 +979,8 @@ position = Vector2(0, 1)
 shape = ExtResource("66_wqdaj")
 debug_color = Color(0.916139, 0.226482, 0.456663, 0.42)
 
-[connection signal="animation_finished" from="animations" to="." method="_on_animations_animation_finished"]
+[node name="PureAgony" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("107_nxa15")
+
+[connection signal="timeout" from="gun_state_machine/Pistol/PistolCancelTimer" to="gun_state_machine/Pistol" method="_on_pistol_cancel_timer_timeout"]
+[connection signal="timeout" from="gun_state_machine/Pistol/PistolFinishedTimer" to="gun_state_machine/Pistol" method="_on_pistol_finished_timer_timeout"]

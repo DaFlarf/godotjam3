@@ -7,7 +7,21 @@ extends CharacterBody2D
 @onready var state_machine: Node = $state_machine
 @onready var player: CharacterBody2D = get_tree().current_scene.get_node("player")
 
+const HEART_SCENE: PackedScene = preload("res://scenes/items/heart.tscn")
+
 var dir: String = "_right"
+
+#variables that are used to cause the player to take damage
+var damage_to_take: int = 0
+var direction_of_knockback: Vector2 = Vector2.ZERO
+var knockback_to_take: int = 0
+var hitstun_to_take: float = 0.0
+var stunned = false
+var invincible = false
+var ded = false
+var state_machine_disabled = false
+
+@export var health: int = 30
 
 signal leaving
 signal dead
@@ -26,14 +40,31 @@ func delete_self():
 	queue_free()
 
 func die():
-	emit_signal("dead")
-	queue_free()
+	state_machine_disabled = true
+	animations.play("ded_down")
+	animations.connect("animation_finished", func f():
+		emit_signal("dead")
+		randomize()
+		var rand = randi_range(0, 2)
+		if  rand == 0:
+			var health_drop = HEART_SCENE.instantiate()
+			health_drop.global_position = global_position
+			get_tree().current_scene.add_child(health_drop)
+		elif rand == 1:
+			rand = randi_range(0, 8)
+		queue_free()
+		)
+	
 	
 func _physics_process(delta: float) -> void:
-	state_machine.process_physics(delta)
+	if !state_machine_disabled:
+		state_machine.process_physics(delta)
+		if ((health <= 0) and (state_machine.current_state != state_machine.death_state)):
+			state_machine.change_state(state_machine.death_state)
 	
 func _process(delta: float) -> void:
-	state_machine.process_frame(delta)
+	if !state_machine_disabled:
+		state_machine.process_frame(delta)
 
 func target(pos: Vector2) -> Vector2:
 	navigation_agent_2d.target_position = pos
@@ -51,3 +82,13 @@ func use_velocity(new_velocity: Vector2):
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
+
+func take_damage(damage: int, knockback_direction: Vector2, knockback_force: int, hitstun: float):
+	if !invincible and !ded:
+		damage_to_take = damage
+		direction_of_knockback = knockback_direction
+		knockback_to_take = knockback_force
+		hitstun_to_take = hitstun
+		stunned = true
+		velocity += direction_of_knockback * knockback_to_take
+		state_machine.change_state(state_machine.hitstun_state)

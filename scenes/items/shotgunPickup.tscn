@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://ct6q3pou114ao"]
+
+[ext_resource type="PackedScene" uid="uid://bsog40xio85ea" path="res://scenes/items/WeaponPickup.tscn" id="1_q7lsu"]
+[ext_resource type="Script" path="res://scenes/items/shotgun_pickup.gd" id="2_16mo3"]
+[ext_resource type="Texture2D" uid="uid://baxawfe3x70r7" path="res://sprites/player/shotgun/Guns Shotgun-export2.png" id="2_88i10"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jy5da"]
+size = Vector2(65, 33)
+
+[node name="Area2D" instance=ExtResource("1_q7lsu")]
+script = ExtResource("2_16mo3")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_88i10")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(22.5, -6.5)
+shape = SubResource("RectangleShape2D_jy5da")

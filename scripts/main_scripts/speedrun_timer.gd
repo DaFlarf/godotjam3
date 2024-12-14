@@ -2,6 +2,8 @@ extends CanvasLayer
 
 var time = Global.speedrun_time
 
+@onready var player: CharacterBody2D = get_tree().current_scene.get_node("player")
+
 func _physics_process(delta: float) -> void:
 	time = float(time) + delta
 	
@@ -18,3 +20,5 @@ func update_ui():
 	Global.speedrun_time = formatted_time
 	
 	$Label.text = formatted_time
+	if player != null:
+		$health_label.text = str(player.health)

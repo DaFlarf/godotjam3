@@ -42,6 +42,10 @@ func process_physics(delta: float) -> Gun_state:
 
 func change_animation() -> void:
 	find_direction()
+	if dir == "_left" or dir == "_down":
+		gun_animations.z_index = 1
+	else:
+		gun_animations.z_index = 0
 	gun_animations.play(dir + gun_name)
 
 func find_direction() -> void:

@@ -1,26 +1,41 @@
-[gd_scene load_steps=15 format=3 uid="uid://c1er73wry7yy7"]
+[gd_scene load_steps=30 format=3 uid="uid://c1er73wry7yy7"]
 
 [ext_resource type="PackedScene" uid="uid://cfxqiknbqe2vm" path="res://scenes/enemy_scenes/state_machine/enemy.tscn" id="1_tev3f"]
 [ext_resource type="Script" path="res://scripts/enemy_scripts/CampyKnight/campy_knight.gd" id="2_1577x"]
-[ext_resource type="Texture2D" uid="uid://3ew5ih1gk1l7" path="res://sprites/enemies/knight/movement/walk/WALK PREVIEW-export1.png" id="3_wnfkl"]
-[ext_resource type="Texture2D" uid="uid://7866qkbq2wn8" path="res://sprites/enemies/knight/movement/walk/WALK PREVIEW-export7.png" id="4_6xh57"]
-[ext_resource type="Texture2D" uid="uid://bs5cs6ubag0ep" path="res://sprites/enemies/knight/movement/walk/WALK PREVIEW-export2.png" id="4_bqpwa"]
-[ext_resource type="Texture2D" uid="uid://c3qw3hgouibi" path="res://sprites/enemies/knight/movement/walk/WALK PREVIEW-export4.png" id="5_rf48j"]
-[ext_resource type="Texture2D" uid="uid://b1k1pwiqmck1h" path="res://sprites/enemies/knight/movement/walk/WALK PREVIEW-export6.png" id="6_2sujv"]
-[ext_resource type="Texture2D" uid="uid://cpnhk4n0y7i5b" path="res://sprites/enemies/knight/movement/walk/WALK PREVIEW-export8.png" id="6_yi0wq"]
+[ext_resource type="Texture2D" uid="uid://c5ourxwuq6rsr" path="res://sprites/enemies/knight/blue knight/movement/betterwalk/Sprite-0003.png" id="3_sfarb"]
+[ext_resource type="Texture2D" uid="uid://dbdjqrll7fh6m" path="res://sprites/enemies/knight/blue knight/movement/betterwalk/Sprite-0004.png" id="4_1bjwr"]
+[ext_resource type="Texture2D" uid="uid://dt5n1x5olkos2" path="res://sprites/enemies/knight/blue knight/movement/betterwalk/Sprite-0009.png" id="5_6svxy"]
+[ext_resource type="Texture2D" uid="uid://peneyk34djc0" path="res://sprites/enemies/knight/blue knight/movement/betterwalk/Sprite-0010.png" id="6_2wfud"]
+[ext_resource type="Texture2D" uid="uid://bk3bthq3pbjn5" path="res://sprites/enemies/knight/blue knight/movement/betterwalk/Sprite-0005.png" id="7_4ghmi"]
 [ext_resource type="Script" path="res://scenes/enemy_scenes/campy_knight/CK-idle.gd" id="7_ij4f0"]
-[ext_resource type="Texture2D" uid="uid://bkxywfuwq1n37" path="res://sprites/enemies/knight/movement/walk/WALK PREVIEW-export3.png" id="7_vscpj"]
 [ext_resource type="Script" path="res://scenes/enemy_scenes/campy_knight/CK-chase.gd" id="8_m20y0"]
-[ext_resource type="Texture2D" uid="uid://bt3vwqxlpcp00" path="res://sprites/enemies/knight/movement/walk/WALK PREVIEW-export5.png" id="9_d5hlq"]
+[ext_resource type="Texture2D" uid="uid://cwt3hqdyltlql" path="res://sprites/enemies/knight/blue knight/movement/betterwalk/Sprite-0006.png" id="8_nly76"]
+[ext_resource type="Texture2D" uid="uid://c6bx8s51jn3fi" path="res://sprites/enemies/knight/blue knight/movement/betterwalk/Sprite-0007.png" id="9_iow7f"]
+[ext_resource type="Texture2D" uid="uid://sd2grtjqb6q3" path="res://sprites/enemies/knight/blue knight/movement/betterwalk/Sprite-0008.png" id="10_fry07"]
+[ext_resource type="Texture2D" uid="uid://1rkpnpxg4pq4" path="res://sprites/enemies/knight/blue knight/movement/ded/Pistol Knight-export1.png" id="11_dxycy"]
+[ext_resource type="Texture2D" uid="uid://c5764jybqjr2" path="res://sprites/enemies/knight/blue knight/movement/ded/Pistol Knight-export2.png" id="12_dsepq"]
+[ext_resource type="Script" path="res://scripts/enemy_scripts/bat/hitstun.gd" id="13_7r3ub"]
+[ext_resource type="Texture2D" uid="uid://dqd6k832gdv7d" path="res://sprites/enemies/knight/blue knight/movement/ded/Pistol Knight-export3.png" id="13_ug1pp"]
+[ext_resource type="Texture2D" uid="uid://px34ftda6ue" path="res://sprites/enemies/knight/blue knight/movement/ded/Pistol Knight-export4.png" id="14_8rlp4"]
+[ext_resource type="Script" path="res://scripts/enemy_scripts/bat/ded.gd" id="14_wu1k5"]
+[ext_resource type="Script" path="res://scenes/enemy_scenes/campy_knight/throw.gd" id="15_203wb"]
+[ext_resource type="Texture2D" uid="uid://1qdnwilwinag" path="res://sprites/enemies/knight/blue knight/movement/ded/Pistol Knight-export5.png" id="15_rihc6"]
+[ext_resource type="Texture2D" uid="uid://xg8cgoigd8ou" path="res://sprites/enemies/knight/blue knight/movement/ded/Pistol Knight-export6.png" id="16_gs0ft"]
+[ext_resource type="AudioStream" uid="uid://b51xtopuwdwiw" path="res://audio/sfx/player/guns/pistol_shoot.wav" id="16_v1wsb"]
+[ext_resource type="Texture2D" uid="uid://bmmkkjeh5k6pa" path="res://sprites/enemies/knight/blue knight/movement/ded/Pistol Knight-export7.png" id="17_2c003"]
+[ext_resource type="Texture2D" uid="uid://dur5mjnhymmx" path="res://sprites/enemies/knight/blue knight/movement/ded/Pistol Knight-export8.png" id="18_i4wsu"]
+[ext_resource type="Texture2D" uid="uid://djq4aeop7rmu4" path="res://sprites/enemies/knight/blue knight/movement/hurt/Pistol Knight-export1.png" id="19_qjfy4"]
+[ext_resource type="Texture2D" uid="uid://bkchubopih1c7" path="res://sprites/enemies/knight/blue knight/movement/hurt/Pistol Knight-export2.png" id="20_dxf72"]
+[ext_resource type="Texture2D" uid="uid://bbla28plov2ww" path="res://sprites/enemies/knight/blue knight/movement/hurt/Pistol Knight-export3.png" id="21_1fmiv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8g4yh"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_wnfkl")
+"texture": ExtResource("3_sfarb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_bqpwa")
+"texture": ExtResource("4_1bjwr")
 }],
 "loop": true,
 "name": &"chase_down",
@@ -28,10 +43,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_6xh57")
+"texture": ExtResource("5_6svxy")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_yi0wq")
+"texture": ExtResource("6_2wfud")
 }],
 "loop": true,
 "name": &"chase_left",
@@ -39,10 +54,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_vscpj")
+"texture": ExtResource("7_4ghmi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_rf48j")
+"texture": ExtResource("8_nly76")
 }],
 "loop": true,
 "name": &"chase_right",
@@ -50,10 +65,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_d5hlq")
+"texture": ExtResource("9_iow7f")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_2sujv")
+"texture": ExtResource("10_fry07")
 }],
 "loop": true,
 "name": &"chase_up",
@@ -61,7 +76,123 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_wnfkl")
+"texture": ExtResource("11_dxycy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_dsepq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ug1pp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_8rlp4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_rihc6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_gs0ft")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_2c003")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_i4wsu")
+}],
+"loop": true,
+"name": &"ded_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_dxycy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_dsepq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ug1pp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_8rlp4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_rihc6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_gs0ft")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_2c003")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_i4wsu")
+}],
+"loop": true,
+"name": &"ded_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_dxycy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_dsepq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ug1pp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_8rlp4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_rihc6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_gs0ft")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_2c003")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_i4wsu")
+}],
+"loop": true,
+"name": &"ded_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_dxycy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_dsepq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ug1pp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_8rlp4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_rihc6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_gs0ft")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_2c003")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_i4wsu")
+}],
+"loop": true,
+"name": &"ded_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_sfarb")
 }],
 "loop": true,
 "name": &"default_down",
@@ -69,7 +200,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_6xh57")
+"texture": ExtResource("5_6svxy")
 }],
 "loop": true,
 "name": &"default_left",
@@ -77,7 +208,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_rf48j")
+"texture": ExtResource("7_4ghmi")
 }],
 "loop": true,
 "name": &"default_right",
@@ -85,10 +216,66 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_2sujv")
+"texture": ExtResource("9_iow7f")
 }],
 "loop": true,
 "name": &"default_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_qjfy4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_dxf72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_1fmiv")
+}],
+"loop": false,
+"name": &"hurt_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_qjfy4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_dxf72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_1fmiv")
+}],
+"loop": false,
+"name": &"hurt_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_qjfy4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_dxf72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_1fmiv")
+}],
+"loop": false,
+"name": &"hurt_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_qjfy4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_dxf72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_1fmiv")
+}],
+"loop": false,
+"name": &"hurt_up",
 "speed": 5.0
 }]
 
@@ -97,23 +284,28 @@ radius = 12.3693
 
 [node name="CampyKnight" instance=ExtResource("1_tev3f")]
 script = ExtResource("2_1577x")
-projectile_speed = 150
+projectile_speed = 600
+health = 3
 
 [node name="animations" parent="." index="0"]
+z_index = 1
 scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_8g4yh")
-animation = &"chase_down"
+animation = &"hurt_down"
 
 [node name="collision" parent="." index="1"]
 position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_e4bf0")
 
-[node name="state_machine" parent="." index="2" node_paths=PackedStringArray("starting_state")]
+[node name="state_machine" parent="." index="2" node_paths=PackedStringArray("starting_state", "hitstun_state", "death_state")]
 starting_state = NodePath("idle")
+hitstun_state = NodePath("Hitstun")
+death_state = NodePath("ded")
 
-[node name="idle" type="Node" parent="state_machine" index="0" node_paths=PackedStringArray("chase_state")]
+[node name="idle" type="Node" parent="state_machine" index="0" node_paths=PackedStringArray("chase_state", "throw_state")]
 script = ExtResource("7_ij4f0")
 chase_state = NodePath("../chase")
+throw_state = NodePath("../throw")
 animation_name = "default"
 move_speed = 400.0
 
@@ -122,6 +314,27 @@ script = ExtResource("8_m20y0")
 idle_state = NodePath("../idle")
 animation_name = "chase"
 move_speed = 100.0
+
+[node name="Hitstun" type="Node" parent="state_machine" index="2" node_paths=PackedStringArray("idle_state", "ded_state")]
+script = ExtResource("13_7r3ub")
+idle_state = NodePath("../idle")
+ded_state = NodePath("../ded")
+animation_name = "hurt"
+
+[node name="ded" type="Node" parent="state_machine" index="3"]
+script = ExtResource("14_wu1k5")
+animation_name = "default"
+
+[node name="throw" type="Node" parent="state_machine" index="4" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("15_203wb")
+idle_state = NodePath("../idle")
+
+[node name="pew-pew" type="AudioStreamPlayer" parent="state_machine/throw" index="0"]
+stream = ExtResource("16_v1wsb")
+volume_db = -5.0
+
+[node name="NavigationAgent2D" parent="." index="4"]
+max_speed = 500.0
 
 [node name="AttackTimer" type="Timer" parent="." index="5"]
 wait_time = 1.5

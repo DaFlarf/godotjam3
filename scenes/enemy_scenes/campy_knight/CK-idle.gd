@@ -2,6 +2,8 @@ extends Enemy_state
 
 @export 
 var chase_state: State
+@export 
+var throw_state: State
 var movement: Vector2 = Vector2.ZERO
 var distance_to_player: float
 
@@ -21,9 +23,7 @@ func process_physics(delta: float) -> Enemy_state:
 			movement = target(campy_dir)
 		else:
 			if parent.can_attack:
-				parent.can_attack = false
-				parent._throw_knife()
-				parent.attack_timer.start()
+				return throw_state
 			movement = target(parent.global_position)
 	
 	if movement != Vector2(0,0):

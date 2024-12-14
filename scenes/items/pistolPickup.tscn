@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://csf308k2ab8es"]
+
+[ext_resource type="PackedScene" uid="uid://bsog40xio85ea" path="res://scenes/items/WeaponPickup.tscn" id="1_7irjq"]
+[ext_resource type="Script" path="res://scripts/items/pistolpickup.gd" id="2_6axnn"]
+[ext_resource type="Texture2D" uid="uid://tyuc1dywskre" path="res://sprites/player/pistol/Guns Pistol-export4.png" id="3_dpoc8"]
+[ext_resource type="Shape2D" uid="uid://dty8jy6ivq5qu" path="res://resources/items/ItemPickup.tres" id="3_kffu3"]
+
+[node name="Area2D" instance=ExtResource("1_7irjq")]
+script = ExtResource("2_6axnn")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_dpoc8")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = ExtResource("3_kffu3")

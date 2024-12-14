@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://debf4fb04vonl"]
+
+[ext_resource type="PackedScene" uid="uid://bsog40xio85ea" path="res://scenes/items/WeaponPickup.tscn" id="1_c3q8s"]
+[ext_resource type="Script" path="res://scripts/items/sniperpickup.gd" id="2_4sced"]
+[ext_resource type="Texture2D" uid="uid://bhkw2dxe3bxxc" path="res://sprites/player/sniper/Guns Sniper-export4.png" id="3_snm24"]
+[ext_resource type="Shape2D" uid="uid://dty8jy6ivq5qu" path="res://resources/items/ItemPickup.tres" id="4_mmwch"]
+
+[node name="Area2D" instance=ExtResource("1_c3q8s")]
+script = ExtResource("2_4sced")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_snm24")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = ExtResource("4_mmwch")

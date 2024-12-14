@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://bonm8u7kpnxfx"]
+
+[ext_resource type="PackedScene" uid="uid://bsog40xio85ea" path="res://scenes/items/WeaponPickup.tscn" id="1_4ltx8"]
+[ext_resource type="Script" path="res://scripts/items/rocketpickup.gd" id="2_34pc2"]
+[ext_resource type="Texture2D" uid="uid://d2s8stjbk5cjb" path="res://sprites/player/Rocket Launcher/Guns RL-export4.png" id="3_1cf4m"]
+[ext_resource type="Shape2D" uid="uid://dty8jy6ivq5qu" path="res://resources/items/ItemPickup.tres" id="4_jonv2"]
+
+[node name="Area2D" instance=ExtResource("1_4ltx8")]
+script = ExtResource("2_34pc2")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_1cf4m")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = ExtResource("4_jonv2")
