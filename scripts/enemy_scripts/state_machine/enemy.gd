@@ -8,6 +8,13 @@ extends CharacterBody2D
 @onready var player: CharacterBody2D = get_tree().current_scene.get_node("player")
 
 const HEART_SCENE: PackedScene = preload("res://scenes/items/heart.tscn")
+const PISTOL_SCENE: PackedScene = preload("res://scenes/items/pistolPickup.tscn")
+const AK_SCENE: PackedScene = preload("res://scenes/items/AKPickup.tscn")
+const MP7_SCENE: PackedScene = preload("res://scenes/items/MP7Pickup.tscn")
+const ROCKET_SCENE: PackedScene = preload("res://scenes/items/rocketPickup.tscn")
+const SHOTGUN_SCENE: PackedScene = preload("res://scenes/items/shotgunPickup.tscn")
+const SNIPER_SCENE: PackedScene = preload("res://scenes/items/sniperPickup.tscn")
+const GOLD_SCENE: PackedScene = preload("res://scenes/items/gold.tscn")
 
 var dir: String = "_right"
 
@@ -40,6 +47,7 @@ func delete_self():
 	queue_free()
 
 func die():
+	$collision.disabled = true
 	state_machine_disabled = true
 	animations.play("ded_down")
 	animations.connect("animation_finished", func f():
@@ -51,7 +59,27 @@ func die():
 			health_drop.global_position = global_position
 			get_tree().current_scene.add_child(health_drop)
 		elif rand == 1:
-			rand = randi_range(0, 8)
+			rand = randi_range(0, 5)
+			var drop
+			match rand:
+				0:
+					drop = AK_SCENE.instantiate()	
+				1:
+					drop = MP7_SCENE.instantiate()
+				2:
+					drop = PISTOL_SCENE.instantiate()
+				3:
+					drop = ROCKET_SCENE.instantiate()
+				4: 
+					drop = SHOTGUN_SCENE.instantiate()
+				5:
+					drop = SNIPER_SCENE.instantiate()
+			drop.global_position = global_position
+			get_tree().current_scene.add_child(drop)
+		else:
+			var gold_drop = GOLD_SCENE.instantiate()
+			gold_drop.global_position = global_position
+			get_tree().current_scene.add_child(gold_drop)
 		queue_free()
 		)
 	

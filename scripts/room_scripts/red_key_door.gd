@@ -12,5 +12,4 @@ func _process(delta: float) -> void:
 
 
 func _on_area_2d_area_entered(body: Player) -> void:
-	if body.has_red_key:
-		open()
+	super(body)

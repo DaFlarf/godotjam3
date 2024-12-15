@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c3y08i3ytkksw"]
+[gd_scene load_steps=21 format=3 uid="uid://c3y08i3ytkksw"]
 
 [ext_resource type="PackedScene" uid="uid://dap8ikt4vlujw" path="res://scenes/room_scenes/room1.tscn" id="1_kokjy"]
 [ext_resource type="PackedScene" uid="uid://cmhcmlwn2aqnh" path="res://scenes/player/player.tscn" id="1_mfy4q"]
@@ -16,10 +16,14 @@
 [ext_resource type="PackedScene" uid="uid://jr0xgves25lb" path="res://scenes/room_scenes/room8.tscn" id="10_bbwmh"]
 [ext_resource type="PackedScene" uid="uid://dtkxdayey3ani" path="res://scenes/room_scenes/room9.tscn" id="11_gxuqw"]
 [ext_resource type="PackedScene" uid="uid://bxumf872lhge" path="res://scenes/room_scenes/room10.tscn" id="12_mnewu"]
+[ext_resource type="PackedScene" uid="uid://bt118aspcnhjn" path="res://scenes/room_scenes/finalBossRoom.tscn" id="13_2bfh3"]
 [ext_resource type="PackedScene" uid="uid://dvtynmbperxq1" path="res://scenes/main_scenes/speedrun_timer.tscn" id="17_676n7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0krdj"]
 size = Vector2(128.25, 61)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4yoec"]
+size = Vector2(127, 59)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_sei8v")
@@ -58,8 +62,11 @@ position = Vector2(2240, -1792)
 [node name="Room11" parent="Rooms" instance=ExtResource("12_mnewu")]
 position = Vector2(320, -2240)
 
+[node name="Room12" parent="Rooms" instance=ExtResource("13_2bfh3")]
+position = Vector2(768, -3520)
+
 [node name="player" parent="." instance=ExtResource("1_mfy4q")]
-position = Vector2(1419, 2722)
+position = Vector2(1432, 2715)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 
@@ -85,6 +92,8 @@ debug_color = Color(0.656663, 0.511894, 0.1919, 0.42)
 [node name="theme_of_guy_trigger" type="Area2D" parent="BGM"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BGM/theme_of_guy_trigger"]
+position = Vector2(829.5, -3680.5)
+shape = SubResource("RectangleShape2D_4yoec")
 debug_color = Color(0.646214, 0.517959, 0.176497, 0.42)
 
 [node name="CanvasLayer" parent="." instance=ExtResource("17_676n7")]
@@ -92,3 +101,4 @@ scale = Vector2(2, 2)
 transform = Transform2D(2, 0, 0, 2, 0, 0)
 
 [connection signal="body_entered" from="BGM/opening_theme_trigger" to="BGM" method="_on_opening_theme_trigger_body_entered"]
+[connection signal="body_entered" from="BGM/theme_of_guy_trigger" to="BGM" method="_on_theme_of_guy_trigger_body_entered"]

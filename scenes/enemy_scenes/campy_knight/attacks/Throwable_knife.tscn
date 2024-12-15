@@ -5,12 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://dyqc5elgbcpsv" path="res://scenes/main_scenes/hitbox.tscn" id="3_hvifa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2jpum"]
-radius = 6.38227
-height = 38.209
+radius = 5.99975
+height = 26.0172
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_av6ku"]
 radius = 6.39853
-height = 39.6988
+height = 26.0233
 
 [node name="ThrowableKnife" type="Node2D"]
 script = ExtResource("1_8mny1")
@@ -22,16 +22,16 @@ texture = ExtResource("2_rmgt1")
 [node name="Area2D" parent="." instance=ExtResource("3_hvifa")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-2, 2)
-rotation = 0.815335
+position = Vector2(1, -1)
+rotation = 1.56164
 shape = SubResource("CapsuleShape2D_2jpum")
 debug_color = Color(0.907259, 0.272541, 0.340514, 0.42)
 
 [node name="SimpleCollsion" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SimpleCollsion"]
-position = Vector2(-2, 2)
-rotation = 0.795276
+position = Vector2(1, -1)
+rotation = 1.56485
 shape = SubResource("CapsuleShape2D_av6ku")
 
 [connection signal="hit" from="Area2D" to="." method="_on_area_2d_hit"]

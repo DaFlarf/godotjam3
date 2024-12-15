@@ -1,0 +1,344 @@
+[gd_scene load_steps=30 format=3 uid="uid://bl8we03pj05hf"]
+
+[ext_resource type="PackedScene" uid="uid://cfxqiknbqe2vm" path="res://scenes/enemy_scenes/state_machine/enemy.tscn" id="1_5ec0y"]
+[ext_resource type="Script" path="res://scripts/enemy_scripts/CampyKnight/campy_knight.gd" id="2_svsw5"]
+[ext_resource type="Texture2D" uid="uid://rx8pqx0j681g" path="res://sprites/enemies/knight/red knight/movement/walk/Shotgun Knight-export1.png" id="3_rbp6a"]
+[ext_resource type="Texture2D" uid="uid://b3mrxt3bd5a1t" path="res://sprites/enemies/knight/red knight/movement/walk/Shotgun Knight-export2.png" id="4_6og2x"]
+[ext_resource type="Texture2D" uid="uid://dxc6qif5s6hnb" path="res://sprites/enemies/knight/red knight/movement/walk/Shotgun Knight-export7.png" id="4_fyeq3"]
+[ext_resource type="Texture2D" uid="uid://c3cjbiow4o57w" path="res://sprites/enemies/knight/red knight/movement/walk/Shotgun Knight-export3.png" id="5_lo7ry"]
+[ext_resource type="Texture2D" uid="uid://b4yfitin0fwgd" path="res://sprites/enemies/knight/red knight/movement/walk/Shotgun Knight-export5.png" id="6_ift37"]
+[ext_resource type="Texture2D" uid="uid://bu4e2fpg8ia4u" path="res://sprites/enemies/knight/red knight/movement/walk/Shotgun Knight-export8.png" id="6_jphru"]
+[ext_resource type="Texture2D" uid="uid://bg08pm6ned5n4" path="res://sprites/enemies/knight/red knight/movement/walk/Shotgun Knight-export4.png" id="8_mv73n"]
+[ext_resource type="Texture2D" uid="uid://v206agtaw04j" path="res://sprites/enemies/knight/red knight/movement/walk/Shotgun Knight-export6.png" id="10_mr3ts"]
+[ext_resource type="Texture2D" uid="uid://du1bs4pwowsbc" path="res://sprites/enemies/knight/red knight/movement/hurt/Shotgun Knight-export1.png" id="11_ir7aq"]
+[ext_resource type="Texture2D" uid="uid://bh7os1iqd7rge" path="res://sprites/enemies/knight/red knight/movement/ded/Shotgun Knight-export1.png" id="11_xixu8"]
+[ext_resource type="Texture2D" uid="uid://deysuy1hdeedg" path="res://sprites/enemies/knight/red knight/movement/hurt/Shotgun Knight-export2.png" id="12_m7eoa"]
+[ext_resource type="Texture2D" uid="uid://c4llgtrlr1ml3" path="res://sprites/enemies/knight/red knight/movement/ded/Shotgun Knight-export2.png" id="12_sjmr4"]
+[ext_resource type="Texture2D" uid="uid://bp2tqlcde34oa" path="res://sprites/enemies/knight/red knight/movement/hurt/Shotgun Knight-export3.png" id="13_nnrsg"]
+[ext_resource type="Texture2D" uid="uid://cxqnh424nkedw" path="res://sprites/enemies/knight/red knight/movement/ded/Shotgun Knight-export3.png" id="13_uqww0"]
+[ext_resource type="Texture2D" uid="uid://c6qwu243dxo2s" path="res://sprites/enemies/knight/red knight/movement/ded/Shotgun Knight-export4.png" id="14_yl4qc"]
+[ext_resource type="Texture2D" uid="uid://b7isjekq2naxh" path="res://sprites/enemies/knight/red knight/movement/ded/Shotgun Knight-export5.png" id="15_xgpl1"]
+[ext_resource type="Texture2D" uid="uid://bxdy27c4a76a5" path="res://sprites/enemies/knight/red knight/movement/ded/Shotgun Knight-export6.png" id="16_13t54"]
+[ext_resource type="Texture2D" uid="uid://c1n4ifqteyykj" path="res://sprites/enemies/knight/red knight/movement/ded/Shotgun Knight-export7.png" id="17_g2w3r"]
+[ext_resource type="Texture2D" uid="uid://nrbhaxsuekhu" path="res://sprites/enemies/knight/red knight/movement/ded/Shotgun Knight-export8.png" id="18_xcyfw"]
+[ext_resource type="Script" path="res://scenes/enemy_scenes/campy_knight/CK-idle.gd" id="22_e0ltx"]
+[ext_resource type="Script" path="res://scenes/enemy_scenes/campy_knight/CK-chase.gd" id="23_lps8u"]
+[ext_resource type="Script" path="res://scripts/enemy_scripts/bat/hitstun.gd" id="24_q68ro"]
+[ext_resource type="Script" path="res://scripts/enemy_scripts/bat/ded.gd" id="25_nmm7h"]
+[ext_resource type="Script" path="res://scripts/enemy_scripts/shotgun_knight/throw.gd" id="26_u6ltu"]
+[ext_resource type="AudioStream" uid="uid://dpeoivchoskya" path="res://audio/sfx/player/guns/shotgun_shoot.wav" id="27_smpq2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x8gbm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_rbp6a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6og2x")
+}],
+"loop": true,
+"name": &"chase_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_fyeq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jphru")
+}],
+"loop": true,
+"name": &"chase_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_lo7ry")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_mv73n")
+}],
+"loop": true,
+"name": &"chase_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ift37")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mr3ts")
+}],
+"loop": true,
+"name": &"chase_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_xixu8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_sjmr4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_uqww0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_yl4qc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_xgpl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_13t54")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_g2w3r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_xcyfw")
+}],
+"loop": false,
+"name": &"ded_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_xixu8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_sjmr4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_uqww0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_yl4qc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_xgpl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_13t54")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_g2w3r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_xcyfw")
+}],
+"loop": false,
+"name": &"ded_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_xixu8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_sjmr4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_uqww0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_yl4qc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_xgpl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_13t54")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_g2w3r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_xcyfw")
+}],
+"loop": false,
+"name": &"ded_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_xixu8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_sjmr4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_uqww0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_yl4qc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_xgpl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_13t54")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_g2w3r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_xcyfw")
+}],
+"loop": false,
+"name": &"ded_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_rbp6a")
+}],
+"loop": true,
+"name": &"default_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_fyeq3")
+}],
+"loop": true,
+"name": &"default_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_lo7ry")
+}],
+"loop": true,
+"name": &"default_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ift37")
+}],
+"loop": true,
+"name": &"default_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_ir7aq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_m7eoa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_nnrsg")
+}],
+"loop": false,
+"name": &"hurt_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_ir7aq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_m7eoa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_nnrsg")
+}],
+"loop": false,
+"name": &"hurt_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_ir7aq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_m7eoa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_nnrsg")
+}],
+"loop": false,
+"name": &"hurt_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_ir7aq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_m7eoa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_nnrsg")
+}],
+"loop": false,
+"name": &"hurt_up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hlu0d"]
+radius = 17.0
+height = 70.0
+
+[node name="ShotgunKnight" instance=ExtResource("1_5ec0y")]
+script = ExtResource("2_svsw5")
+projectile_speed = 150
+health = 5
+
+[node name="animations" parent="." index="0"]
+z_index = 1
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_x8gbm")
+animation = &"ded_down"
+
+[node name="collision" parent="." index="1"]
+position = Vector2(0, 10)
+shape = SubResource("CapsuleShape2D_hlu0d")
+
+[node name="state_machine" parent="." index="2" node_paths=PackedStringArray("starting_state", "hitstun_state", "death_state")]
+starting_state = NodePath("idle")
+hitstun_state = NodePath("Hitstun")
+death_state = NodePath("ded")
+
+[node name="idle" type="Node" parent="state_machine" index="0" node_paths=PackedStringArray("chase_state", "throw_state")]
+script = ExtResource("22_e0ltx")
+chase_state = NodePath("../chase")
+throw_state = NodePath("../throw")
+animation_name = "default"
+move_speed = 400.0
+
+[node name="chase" type="Node" parent="state_machine" index="1" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("23_lps8u")
+idle_state = NodePath("../idle")
+animation_name = "chase"
+move_speed = 100.0
+
+[node name="Hitstun" type="Node" parent="state_machine" index="2" node_paths=PackedStringArray("idle_state", "ded_state")]
+script = ExtResource("24_q68ro")
+idle_state = NodePath("../idle")
+ded_state = NodePath("../ded")
+animation_name = "hurt"
+
+[node name="ded" type="Node" parent="state_machine" index="3"]
+script = ExtResource("25_nmm7h")
+animation_name = "default"
+
+[node name="throw" type="Node" parent="state_machine" index="4" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("26_u6ltu")
+idle_state = NodePath("../idle")
+
+[node name="pew-pew" type="AudioStreamPlayer" parent="state_machine/throw" index="0"]
+stream = ExtResource("27_smpq2")
+volume_db = -5.0
+
+[node name="NavigationAgent2D" parent="." index="4"]
+max_speed = 500.0
+
+[node name="AttackTimer" type="Timer" parent="." index="5"]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

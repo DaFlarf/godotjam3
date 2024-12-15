@@ -13,17 +13,20 @@ var finished: bool = false
 func enter():
 	super()
 	pistol_cancel_timer.start()
+	parent.num_in_series += 1
 	
 func process_physics(delta: float) -> Gun_state:
 	change_animation()
 	
-	if finished:
-		return pacifism_state
-	
 	if cancellable:
 		if parent.using_primary:
-			if parent.weapon_array.size() > 1 and parent.num_in_series < (parent.weapon_array.size() - 1):
-				return parent.weapon_array[parent.num_in_series + 1]
+			if parent.weapon_array.size() > 1 and parent.num_in_series < (parent.weapon_array.size()):
+				return parent.weapon_array[parent.num_in_series]
+				
+	if finished:
+		parent.num_in_series = 0
+		return pacifism_state
+	
 	return null
 
 func process_input(event: InputEvent) -> Gun_state:

@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://kbwy8dfwlfes"]
+
+[ext_resource type="Script" path="res://scripts/player/states/gun_states/boolets/sniper_bullet.gd" id="1_hf7v5"]
+[ext_resource type="Texture2D" uid="uid://bvdtagc8ys7tu" path="res://sprites/player/boolets/sniper-boolets.png" id="2_lhdgg"]
+[ext_resource type="PackedScene" uid="uid://dyqc5elgbcpsv" path="res://scenes/main_scenes/hitbox.tscn" id="3_7noxe"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ovmpy"]
+radius = 3.99989
+height = 20.0
+
+[node name="SniperBoolet" type="Node2D"]
+script = ExtResource("1_hf7v5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("2_lhdgg")
+
+[node name="Area2D" parent="." instance=ExtResource("3_7noxe")]
+damage = 5
+knockback_force = 1000
+hitstun = 0.4
+targeted_group = "enemy"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -2)
+rotation = 1.56321
+shape = SubResource("CapsuleShape2D_ovmpy")
+
+[node name="SimpleCollsion" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SimpleCollsion"]
+position = Vector2(0, -2)
+rotation = -1.57848
+shape = SubResource("CapsuleShape2D_ovmpy")
+
+[connection signal="body_entered" from="SimpleCollsion" to="." method="_on_simple_collsion_body_entered"]

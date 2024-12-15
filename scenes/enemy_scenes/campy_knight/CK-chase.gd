@@ -6,7 +6,7 @@ var movement: Vector2
 var distance_to_player: float
 
 func enter():
-	find_direction()
+	face_player()
 	
 func process_physics(delta: float) -> State:
 	

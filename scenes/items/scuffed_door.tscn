@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0lbti8qwy174"]
+
+[ext_resource type="Script" path="res://scripts/items/door.gd" id="1_hsxpa"]
+[ext_resource type="Texture2D" uid="uid://bgdbdvxc5gnpx" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/tiles/wall/door_anim_opening_f0.png" id="2_tpj03"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sbbnv"]
+size = Vector2(128, 114)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1dwt"]
+size = Vector2(128, 66)
+
+[node name="Node2D" type="CharacterBody2D"]
+script = ExtResource("1_hsxpa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("2_tpj03")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-3, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2, 4)
+shape = SubResource("RectangleShape2D_sbbnv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_e1dwt")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

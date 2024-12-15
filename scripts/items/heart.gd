@@ -1,5 +1,11 @@
 extends Area2D
 
+@onready var audio = $AudioStreamPlayer
+
 func _on_body_entered(body: Player) -> void:
-	body.health += 1
+	if body != null:
+		body.health += 1
+		audio.play()
+
+func _on_audio_stream_player_finished() -> void:
 	queue_free()

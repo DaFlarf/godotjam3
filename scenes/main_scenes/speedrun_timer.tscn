@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvtynmbperxq1"]
+[gd_scene load_steps=6 format=3 uid="uid://dvtynmbperxq1"]
 
 [ext_resource type="FontFile" uid="uid://dbukd3vbvo3xu" path="res://sprites/fonts/Kenney Blocks.ttf" id="1_ceb5r"]
 [ext_resource type="Script" path="res://scripts/main_scripts/speedrun_timer.gd" id="1_dagom"]
 [ext_resource type="Texture2D" uid="uid://do7ankym1j2te" path="res://sprites/UI/health-icon.png" id="2_lx7ir"]
+[ext_resource type="Texture2D" uid="uid://iixusq7kc6ly" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/props_itens/chest_closed_anim_f0.png" id="3_1312q"]
+[ext_resource type="Texture2D" uid="uid://wt1cm7wt1abl" path="res://sprites/UI/combineIcon.png" id="5_f5m5c"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_dagom")
@@ -23,6 +25,17 @@ color = Color(0.2484, 0.2484, 0.2484, 1)
 position = Vector2(13, 11)
 texture = ExtResource("2_lx7ir")
 
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = 27.0
+offset_top = 56.0
+offset_right = 100.0
+offset_bottom = 78.0
+color = Color(0.2484, 0.2484, 0.2484, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ColorRect3"]
+position = Vector2(13, 11)
+texture = ExtResource("3_1312q")
+
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
@@ -36,3 +49,16 @@ offset_right = 99.0
 offset_bottom = 51.0
 theme_override_fonts/font = ExtResource("1_ceb5r")
 text = "30"
+
+[node name="wealth_label" type="Label" parent="."]
+offset_left = 51.0
+offset_top = 55.0
+offset_right = 110.0
+offset_bottom = 79.0
+theme_override_fonts/font = ExtResource("1_ceb5r")
+text = "1000"
+
+[node name="combine_label" type="Sprite2D" parent="."]
+position = Vector2(71, 97)
+scale = Vector2(2, 2)
+texture = ExtResource("5_f5m5c")

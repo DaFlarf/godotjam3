@@ -35,8 +35,18 @@ var has_blue_key = false
 @export var sniper_state: Gun_state
 
 @export_group("bullet scenes")
+@export var AK_boolet_scene: PackedScene
+@export var AK_boolet_speed: int
+@export var MP7_boolet_scene: PackedScene
+@export var MP7_boolet_speed: int
 @export var pistol_boolet_scene: PackedScene
 @export var pistol_boolet_speed: int
+@export var rocket_boolet_scene: PackedScene
+@export var rocket_boolet_speed: int
+@export var shotgun_boolet_scene: PackedScene
+@export var shotgun_boolet_speed: int
+@export var sniper_boolet_scene: PackedScene
+@export var sniper_boolet_speed: int
 
 #variables that are used to cause the player to take damage
 var damage_to_take: int = 0
@@ -52,6 +62,7 @@ var offhand_weapon: Gun_state = null
 var using_primary = false
 var using_offhand = false
 var num_in_series = 0
+var cash = 0
 
 var last_non_zero_direction: Vector2 = Vector2(1,0)
 
@@ -80,9 +91,11 @@ func _process(delta: float) -> void:
 	if !state_machine_disabled:
 		state_machine.process_frame(delta)
 		gun_state_machine.process_frame(delta)
+		if move_component.wants_special():
+			combine_weapons()
 
 func calculate_upgrade_cost() -> int:
-	return weapon_array.size() * 300
+	return weapon_array.size() * 30
 
 func swap_offhand_weapon(new_weapon: Gun_state) -> void:
 	if !state_machine_disabled:
@@ -90,12 +103,19 @@ func swap_offhand_weapon(new_weapon: Gun_state) -> void:
 		offhand_weapon = new_weapon
 		print(offhand_weapon)
 
+func can_combine() -> bool:
+	if (offhand_weapon != null) and (weapon_array.size() < 4) and (cash >= calculate_upgrade_cost()):
+		return true
+	return false
+
 func combine_weapons() -> void:
-	if (offhand_weapon != null) and weapon_array.size() < 4:
+	if (can_combine()):
 		weapon_array.append(offhand_weapon)
+		offhand_weapon = null
+		$CombineNoise.play()
 	else:
-		Events.emit_signal("unable_to_combine")
-	offhand_weapon = null
+		$CantCombine.play()
+	
 
 func disable_hurtbox():
 	invincible = true
@@ -126,4 +146,57 @@ func die():
 func spawn_pistol_boolet():
 	var projectile: Node2D = pistol_boolet_scene.instantiate()
 	projectile.launch(global_position, last_non_zero_direction.normalized(), pistol_boolet_speed)
+	get_tree().current_scene.add_child(projectile)
+
+func spawn_shotgun_boolet():
+	var projectile: Node2D = shotgun_boolet_scene.instantiate()
+	projectile.launch(global_position, last_non_zero_direction.normalized(), shotgun_boolet_speed)
+	get_tree().current_scene.add_child(projectile)
+	var projectile2: Node2D = shotgun_boolet_scene.instantiate()
+	projectile2.launch(global_position, (last_non_zero_direction.rotated(PI/16).normalized()), shotgun_boolet_speed)
+	get_tree().current_scene.add_child(projectile2)
+	var projectile3: Node2D = shotgun_boolet_scene.instantiate()
+	projectile3.launch(global_position, (last_non_zero_direction.rotated(-PI/16).normalized()), shotgun_boolet_speed)
+	get_tree().current_scene.add_child(projectile3)
+
+func spawn_sniper_boolet():
+	var projectile: Node2D = sniper_boolet_scene.instantiate()
+	projectile.launch(global_position, last_non_zero_direction.normalized(), sniper_boolet_speed)
+	get_tree().current_scene.add_child(projectile)
+
+func spawn_MP7_boolet():
+	var i: int = 0
+	while(i < 5):
+		var rand = randi_range(0, 6)
+		var inaccuracy_vector: Vector2
+		match rand:
+			0:
+				inaccuracy_vector = last_non_zero_direction.normalized()
+			1:
+				inaccuracy_vector = last_non_zero_direction.rotated(PI/32).normalized()
+			2:
+				inaccuracy_vector = last_non_zero_direction.rotated(-PI/32).normalized()
+			3:
+				inaccuracy_vector = last_non_zero_direction.rotated(PI/16).normalized()
+			4:
+				inaccuracy_vector = last_non_zero_direction.rotated(-PI/16).normalized()
+			5:
+				inaccuracy_vector = last_non_zero_direction.rotated(PI/8).normalized()
+			6:
+				inaccuracy_vector = last_non_zero_direction.rotated(-PI/8).normalized()
+			
+		var projectile: Node2D = pistol_boolet_scene.instantiate()
+		projectile.launch(global_position, inaccuracy_vector, MP7_boolet_speed)
+		get_tree().current_scene.add_child(projectile)
+		i += 1
+		await get_tree().create_timer(0.05).timeout
+
+func spawn_AK_boolet():
+	var projectile: Node2D = pistol_boolet_scene.instantiate()
+	projectile.launch(global_position, last_non_zero_direction.normalized(), AK_boolet_speed)
+	get_tree().current_scene.add_child(projectile)
+
+func spawn_rocket_boolet():
+	var projectile: Node2D = rocket_boolet_scene.instantiate()
+	projectile.launch(global_position, last_non_zero_direction.normalized(), rocket_boolet_speed)
 	get_tree().current_scene.add_child(projectile)

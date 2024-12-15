@@ -1,6 +1,6 @@
 extends Enemy
 
-const THROWABLE_KNIFE_SCENE: PackedScene = preload("res://scenes/enemy_scenes/campy_knight/attacks/Throwable_knife.tscn")
+const shotgun_boolet_scene: PackedScene = preload("res://scenes/enemy_scenes/shotgun_knight/shotgun_shell.tscn")
 
 const MAX_DISTANCE_TO_PLAYER: int = 256
 const MIN_DISTANCE_TO_PLAYER: int = 144
@@ -20,10 +20,16 @@ func _process(delta: float) -> void:
 		else:
 			attack_timer.paused = false
 
-func _throw_knife() -> void:
-	var projectile: Node2D = THROWABLE_KNIFE_SCENE.instantiate()
+func throw_knife():
+	var projectile: Node2D = shotgun_boolet_scene.instantiate()
 	projectile.launch(global_position, (player.position - global_position).normalized(), projectile_speed)
 	get_tree().current_scene.add_child(projectile)
+	var projectile2: Node2D = shotgun_boolet_scene.instantiate()
+	projectile2.launch(global_position, ((player.position - global_position).rotated(PI/16).normalized()), projectile_speed)
+	get_tree().current_scene.add_child(projectile2)
+	var projectile3: Node2D = shotgun_boolet_scene.instantiate()
+	projectile3.launch(global_position, ((player.position - global_position).rotated(-PI/16).normalized()), projectile_speed)
+	get_tree().current_scene.add_child(projectile3)
 
 func _on_attack_timer_timeout() -> void:
 	can_attack = true

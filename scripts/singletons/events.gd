@@ -5,3 +5,4 @@ signal player_ran_away
 signal kill
 signal unable_to_combine
 signal game_over
+signal victory

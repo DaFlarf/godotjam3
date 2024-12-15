@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://bnfhtjch7yh73"]
+
+[ext_resource type="PackedScene" uid="uid://cfxqiknbqe2vm" path="res://scenes/enemy_scenes/state_machine/enemy.tscn" id="1_tm2fv"]
+[ext_resource type="Script" path="res://scenes/enemy_scenes/purple_knight/purple.gd" id="2_vd27g"]
+[ext_resource type="SpriteFrames" uid="uid://bvajbmquooifq" path="res://resources/items/guy.tres" id="3_ot1ph"]
+[ext_resource type="Script" path="res://scenes/enemy_scenes/purple_knight/idle.gd" id="4_4pj6k"]
+[ext_resource type="Script" path="res://scenes/enemy_scenes/campy_knight/CK-chase.gd" id="5_hk5e6"]
+[ext_resource type="Script" path="res://scripts/enemy_scripts/bat/hitstun.gd" id="6_slrc7"]
+[ext_resource type="Script" path="res://scripts/enemy_scripts/bat/ded.gd" id="7_f4aoc"]
+[ext_resource type="Script" path="res://scenes/enemy_scenes/purple_knight/throw.gd" id="8_ut386"]
+[ext_resource type="AudioStream" uid="uid://ctb1oc7obasg7" path="res://audio/sfx/player/movement/air_shooter.wav" id="9_88bep"]
+[ext_resource type="AudioStream" uid="uid://dpeoivchoskya" path="res://audio/sfx/player/guns/shotgun_shoot.wav" id="10_bwwbp"]
+[ext_resource type="Script" path="res://scenes/enemy_scenes/purple_knight/shoot.gd" id="10_rynqp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wmfle"]
+radius = 19.0
+height = 78.0
+
+[node name="PurpleKnight" instance=ExtResource("1_tm2fv")]
+script = ExtResource("2_vd27g")
+health = 60
+
+[node name="animations" parent="." index="0"]
+scale = Vector2(1, 1)
+sprite_frames = ExtResource("3_ot1ph")
+animation = &"ded_down"
+
+[node name="collision" parent="." index="1"]
+position = Vector2(-1, 4)
+shape = SubResource("CapsuleShape2D_wmfle")
+
+[node name="state_machine" parent="." index="2" node_paths=PackedStringArray("starting_state", "hitstun_state", "death_state")]
+starting_state = NodePath("idle")
+hitstun_state = NodePath("Hitstun")
+death_state = NodePath("ded")
+
+[node name="idle" type="Node" parent="state_machine" index="0" node_paths=PackedStringArray("chase_state", "throw_state", "shoot_state")]
+script = ExtResource("4_4pj6k")
+chase_state = NodePath("../chase")
+throw_state = NodePath("../throw")
+shoot_state = NodePath("../shoot")
+animation_name = "default"
+
+[node name="chase" type="Node" parent="state_machine" index="1" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("5_hk5e6")
+idle_state = NodePath("../idle")
+animation_name = "dash"
+move_speed = 100.0
+
+[node name="Hitstun" type="Node" parent="state_machine" index="2" node_paths=PackedStringArray("idle_state", "ded_state")]
+script = ExtResource("6_slrc7")
+idle_state = NodePath("../idle")
+ded_state = NodePath("../ded")
+animation_name = "hurt"
+
+[node name="ded" type="Node" parent="state_machine" index="3"]
+script = ExtResource("7_f4aoc")
+animation_name = "ded"
+
+[node name="throw" type="Node" parent="state_machine" index="4" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("8_ut386")
+idle_state = NodePath("../idle")
+animation_name = "summon"
+
+[node name="pew-pew" type="AudioStreamPlayer" parent="state_machine/throw" index="0"]
+stream = ExtResource("9_88bep")
+volume_db = -5.0
+
+[node name="shoot" type="Node" parent="state_machine" index="5" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("10_rynqp")
+idle_state = NodePath("../idle")
+animation_name = "summon"
+
+[node name="pew-pew" type="AudioStreamPlayer" parent="state_machine/shoot" index="0"]
+stream = ExtResource("10_bwwbp")
+volume_db = -5.0
+
+[node name="AttackTimer" type="Timer" parent="." index="5"]
+one_shot = true
+
+[node name="AttackTimer2" type="Timer" parent="." index="6"]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="AttackTimer2" to="." method="_on_attack_timer_2_timeout"]

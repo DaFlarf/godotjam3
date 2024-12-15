@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://du80wagavtfjm"]
+
+[ext_resource type="Script" path="res://scripts/items/gold.gd" id="1_qhdq0"]
+[ext_resource type="Texture2D" uid="uid://bxe35b87fkcoq" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/props_itens/bag_coins.png" id="2_y2ofi"]
+[ext_resource type="AudioStream" uid="uid://bpgyuftqyg57e" path="res://audio/sfx/items/pause.wav" id="3_hhk24"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4hfi7"]
+size = Vector2(128, 113.5)
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_qhdq0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("2_y2ofi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 6)
+shape = SubResource("RectangleShape2D_4hfi7")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_hhk24")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=4 uid="uid://dtkxdayey3ani"]
 
 [ext_resource type="PackedScene" uid="uid://bx5fjserd040x" path="res://scenes/room_scenes/room.tscn" id="1_mc83e"]
-[ext_resource type="PackedScene" uid="uid://s6fl06dfb2d0" path="res://scenes/room_scenes/blue_key_door.tscn" id="2_8uiry"]
+[ext_resource type="PackedScene" uid="uid://c0lbti8qwy174" path="res://scenes/items/scuffed_door.tscn" id="2_kda4u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1l38i"]
 size = Vector2(129, 66)
@@ -26,6 +26,18 @@ tile_map_data = PackedByteArray("AAD2////AAAEAAUAAAD2//7/AAAEAAUAAAD2//3/AAAEAAU
 [node name="bottom walls" parent="." index="2"]
 tile_map_data = PackedByteArray("AAAIAAAAAAACAAcAAAAHAAAAAAACAAcAAAAGAAAAAAACAAcAAAAFAAAAAAACAAcAAAAEAAAAAAACAAcAAAADAAAAAAACAAcAAAACAAAAAAACAAcAAAD3/wAAAAACAAcAAAD4/wAAAAACAAcAAAD5/wAAAAACAAcAAAD6/wAAAAACAAcAAAD7/wAAAAACAAcAAAD8/wAAAAACAAcAAAD9/wAAAAACAAcAAAD+/wAAAAACAAcAAAD//wAAAAACAAcAAAA=")
 
+[node name="Marker2D" type="Marker2D" parent="EnemyPositions" index="0"]
+position = Vector2(-489, -163)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemyPositions" index="1"]
+position = Vector2(540, -26)
+
+[node name="Marker2D3" type="Marker2D" parent="EnemyPositions" index="2"]
+position = Vector2(218, -166)
+
+[node name="Marker2D4" type="Marker2D" parent="EnemyPositions" index="3"]
+position = Vector2(-227, -38)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
 position = Vector2(63.5, 31)
 shape = SubResource("RectangleShape2D_1l38i")
@@ -44,5 +56,5 @@ position = Vector2(64, 167)
 shape = SubResource("RectangleShape2D_4i0sj")
 debug_color = Color(0.897833, 0.284569, 0.357826, 0.42)
 
-[node name="LockedDoor" parent="." index="10" instance=ExtResource("2_8uiry")]
-position = Vector2(62, -324)
+[node name="Node2D" parent="." index="10" instance=ExtResource("2_kda4u")]
+position = Vector2(64, -326)

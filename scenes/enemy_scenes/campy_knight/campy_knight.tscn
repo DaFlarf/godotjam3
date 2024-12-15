@@ -1,7 +1,7 @@
 [gd_scene load_steps=30 format=3 uid="uid://c1er73wry7yy7"]
 
 [ext_resource type="PackedScene" uid="uid://cfxqiknbqe2vm" path="res://scenes/enemy_scenes/state_machine/enemy.tscn" id="1_tev3f"]
-[ext_resource type="Script" path="res://scripts/enemy_scripts/CampyKnight/campy_knight.gd" id="2_1577x"]
+[ext_resource type="Script" path="res://scripts/enemy_scripts/shotgun_knight/campy_knight.gd" id="2_knr1x"]
 [ext_resource type="Texture2D" uid="uid://c5ourxwuq6rsr" path="res://sprites/enemies/knight/blue knight/movement/betterwalk/Sprite-0003.png" id="3_sfarb"]
 [ext_resource type="Texture2D" uid="uid://dbdjqrll7fh6m" path="res://sprites/enemies/knight/blue knight/movement/betterwalk/Sprite-0004.png" id="4_1bjwr"]
 [ext_resource type="Texture2D" uid="uid://dt5n1x5olkos2" path="res://sprites/enemies/knight/blue knight/movement/betterwalk/Sprite-0009.png" id="5_6svxy"]
@@ -99,7 +99,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("18_i4wsu")
 }],
-"loop": true,
+"loop": false,
 "name": &"ded_down",
 "speed": 5.0
 }, {
@@ -128,7 +128,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("18_i4wsu")
 }],
-"loop": true,
+"loop": false,
 "name": &"ded_left",
 "speed": 5.0
 }, {
@@ -157,7 +157,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("18_i4wsu")
 }],
-"loop": true,
+"loop": false,
 "name": &"ded_right",
 "speed": 5.0
 }, {
@@ -186,7 +186,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("18_i4wsu")
 }],
-"loop": true,
+"loop": false,
 "name": &"ded_up",
 "speed": 5.0
 }, {
@@ -279,23 +279,24 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_e4bf0"]
-radius = 12.3693
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hlu0d"]
+radius = 17.0
+height = 70.0
 
 [node name="CampyKnight" instance=ExtResource("1_tev3f")]
-script = ExtResource("2_1577x")
-projectile_speed = 600
+script = ExtResource("2_knr1x")
+projectile_speed = 200
 health = 3
 
 [node name="animations" parent="." index="0"]
 z_index = 1
 scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_8g4yh")
-animation = &"hurt_down"
+animation = &"ded_down"
 
 [node name="collision" parent="." index="1"]
-position = Vector2(0, 3)
-shape = SubResource("CircleShape2D_e4bf0")
+position = Vector2(0, 10)
+shape = SubResource("CapsuleShape2D_hlu0d")
 
 [node name="state_machine" parent="." index="2" node_paths=PackedStringArray("starting_state", "hitstun_state", "death_state")]
 starting_state = NodePath("idle")

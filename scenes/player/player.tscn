@@ -1,19 +1,22 @@
-[gd_scene load_steps=131 format=3 uid="uid://cmhcmlwn2aqnh"]
+[gd_scene load_steps=140 format=3 uid="uid://cmhcmlwn2aqnh"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_oaq16"]
 [ext_resource type="PackedScene" uid="uid://cjsi74qd4q5c" path="res://scenes/player/boolets/pistol-boolet.tscn" id="2_3nh4l"]
 [ext_resource type="Texture2D" uid="uid://bxk4x2mu7f2ou" path="res://sprites/player/movement/idle/idle_down1.png" id="2_bpijs"]
 [ext_resource type="Texture2D" uid="uid://chwoqan6wwxmn" path="res://sprites/player/AK/Guns AK-export1.png" id="2_chmpa"]
 [ext_resource type="PackedScene" uid="uid://1rq6tt0w6o3w" path="res://scenes/state_machine/state_machine.tscn" id="2_xh24f"]
+[ext_resource type="PackedScene" uid="uid://0ajarprgrxmw" path="res://scenes/player/boolets/rocket.tscn" id="3_48xts"]
 [ext_resource type="Texture2D" uid="uid://d28sdlhyh3hje" path="res://sprites/player/AK/Guns AK-export4.png" id="3_bw8sw"]
 [ext_resource type="Texture2D" uid="uid://ctkjij5vwbrhr" path="res://sprites/player/MP7/Guns MP7-export1.png" id="3_gwseu"]
 [ext_resource type="Texture2D" uid="uid://de2nowxo0xj38" path="res://sprites/player/movement/idle/idle_down2.png" id="3_hmgim"]
 [ext_resource type="Script" path="res://scripts/player/states/movement states/walk.gd" id="3_ixfrj"]
 [ext_resource type="Script" path="res://scripts/state_machine/move_script.gd" id="3_p7n7k"]
 [ext_resource type="Texture2D" uid="uid://br01rvk4feb0u" path="res://sprites/player/movement/dash/dash_down2.png" id="3_sl8q2"]
+[ext_resource type="PackedScene" uid="uid://bdjaln22t7kyh" path="res://scenes/player/boolets/shotgun-boolet.tscn" id="3_wlf68"]
 [ext_resource type="Texture2D" uid="uid://cks1rehohnaw8" path="res://sprites/player/Rocket Launcher/Guns RL-export1.png" id="4_2n41o"]
 [ext_resource type="Texture2D" uid="uid://b3f7s2t2i80tx" path="res://sprites/player/movement/idle/idle_down3.png" id="4_06gne"]
 [ext_resource type="Texture2D" uid="uid://bjkppiy3n1fq4" path="res://sprites/player/AK/Guns AK-export2.png" id="4_eeexb"]
+[ext_resource type="PackedScene" uid="uid://kbwy8dfwlfes" path="res://scenes/player/boolets/sniper_boolet.tscn" id="4_m0tus"]
 [ext_resource type="Texture2D" uid="uid://csh02e033hr75" path="res://sprites/player/movement/dash/dash_down3.png" id="4_n5tme"]
 [ext_resource type="Texture2D" uid="uid://c18wadwmdfdtv" path="res://sprites/player/pistol/Guns Pistol-export1.png" id="4_skd8t"]
 [ext_resource type="Script" path="res://scripts/player/states/movement states/idle.gd" id="5_c32jj"]
@@ -127,7 +130,13 @@
 [ext_resource type="AudioStream" uid="uid://b51xtopuwdwiw" path="res://audio/sfx/player/guns/pistol_shoot.wav" id="122_r3aw0"]
 [ext_resource type="Script" path="res://scripts/player/states/gun_states/MP7.gd" id="123_06ha4"]
 [ext_resource type="Script" path="res://scripts/player/states/gun_states/AK.gd" id="124_8etkm"]
+[ext_resource type="AudioStream" uid="uid://dpeoivchoskya" path="res://audio/sfx/player/guns/shotgun_shoot.wav" id="124_tlud3"]
 [ext_resource type="Script" path="res://scripts/player/states/gun_states/rawketlauwncha.gd" id="125_ki325"]
+[ext_resource type="AudioStream" uid="uid://hs440q48qwdd" path="res://audio/sfx/player/guns/sniper_shoot.wav" id="126_yu07p"]
+[ext_resource type="AudioStream" uid="uid://chuxn6mqay7ab" path="res://audio/sfx/player/guns/smg-_-mp7-half-life-2-loop_-made-with-Voicemod.wav" id="129_7fnir"]
+[ext_resource type="AudioStream" uid="uid://blwlkyp2kf6gd" path="res://audio/sfx/player/guns/metal-slug-rocket-launcher-made-with-Voicemod.mp3" id="132_f4sdk"]
+[ext_resource type="AudioStream" uid="uid://cqbnqcbj7o034" path="res://audio/sfx/player/movement/63 - MMX - Enemy Motor 3.wav" id="136_ww2y5"]
+[ext_resource type="AudioStream" uid="uid://df1tbkd2kdyqq" path="res://audio/sfx/player/movement/45 - MMX - Beep (3).wav" id="137_kv04d"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_m664d"]
 animations = [{
@@ -833,19 +842,29 @@ motion_mode = 1
 script = ExtResource("1_oaq16")
 first_gun_state = NodePath("gun_state_machine/Pistol")
 pistol_state = NodePath("gun_state_machine/Pistol")
-shotgun_state = NodePath("gun_state_machine/shotgun")
+shotgun_state = NodePath("gun_state_machine/Shotgun")
 AK_state = NodePath("gun_state_machine/AK")
 MP7_state = NodePath("gun_state_machine/MP7")
 Rocket_launcher_state = NodePath("gun_state_machine/RAWKETLAUWNCHA")
-sniper_state = NodePath("gun_state_machine/sniper")
+sniper_state = NodePath("gun_state_machine/Sniper")
+AK_boolet_speed = 1200
+MP7_boolet_scene = ExtResource("2_3nh4l")
+MP7_boolet_speed = 2000
 pistol_boolet_scene = ExtResource("2_3nh4l")
 pistol_boolet_speed = 600
+rocket_boolet_scene = ExtResource("3_48xts")
+rocket_boolet_speed = 300
+shotgun_boolet_scene = ExtResource("3_wlf68")
+shotgun_boolet_speed = 1000
+sniper_boolet_scene = ExtResource("4_m0tus")
+sniper_boolet_speed = 3000
 
 [node name="gun_animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_m664d")
-animation = &"_rightsniper"
+animation = &"_downAK"
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_83jlx")
 animation = &"ded_up"
 
@@ -943,29 +962,86 @@ one_shot = true
 stream = ExtResource("122_r3aw0")
 volume_db = -5.0
 
-[node name="shotgun" type="Node" parent="gun_state_machine" node_paths=PackedStringArray("pacifism_state")]
+[node name="Shotgun" type="Node" parent="gun_state_machine" node_paths=PackedStringArray("pacifism_state")]
 script = ExtResource("113_pyo58")
 pacifism_state = NodePath("../Pacifism")
 gun_name = "shotgun"
 
-[node name="sniper" type="Node" parent="gun_state_machine" node_paths=PackedStringArray("pacifism_state")]
+[node name="ShotgunCancelTimer" type="Timer" parent="gun_state_machine/Shotgun"]
+wait_time = 0.2
+one_shot = true
+
+[node name="ShotgunFinishedTimer" type="Timer" parent="gun_state_machine/Shotgun"]
+wait_time = 0.2
+one_shot = true
+
+[node name="blam-blam" type="AudioStreamPlayer" parent="gun_state_machine/Shotgun"]
+stream = ExtResource("124_tlud3")
+volume_db = -5.0
+
+[node name="Sniper" type="Node" parent="gun_state_machine" node_paths=PackedStringArray("pacifism_state")]
 script = ExtResource("122_it5j0")
 pacifism_state = NodePath("../Pacifism")
 gun_name = "sniper"
+
+[node name="SniperCancelTimer" type="Timer" parent="gun_state_machine/Sniper"]
+wait_time = 0.2
+one_shot = true
+
+[node name="SniperFinishedTimer" type="Timer" parent="gun_state_machine/Sniper"]
+one_shot = true
+
+[node name="snipe" type="AudioStreamPlayer" parent="gun_state_machine/Sniper"]
+stream = ExtResource("126_yu07p")
+volume_db = -5.0
 
 [node name="MP7" type="Node" parent="gun_state_machine" node_paths=PackedStringArray("pacifism_state")]
 script = ExtResource("123_06ha4")
 pacifism_state = NodePath("../Pacifism")
 gun_name = "MP7"
 
+[node name="MP7CancelTimer" type="Timer" parent="gun_state_machine/MP7"]
+wait_time = 0.6
+one_shot = true
+
+[node name="MP7FinishedTimer" type="Timer" parent="gun_state_machine/MP7"]
+wait_time = 0.4
+one_shot = true
+
+[node name="HersheySquirts" type="AudioStreamPlayer" parent="gun_state_machine/MP7"]
+stream = ExtResource("129_7fnir")
+
 [node name="AK" type="Node" parent="gun_state_machine" node_paths=PackedStringArray("pacifism_state")]
 script = ExtResource("124_8etkm")
 pacifism_state = NodePath("../Pacifism")
+gun_name = "AK"
+
+[node name="AKCancelTimer" type="Timer" parent="gun_state_machine/AK"]
+wait_time = 0.2
+one_shot = true
+
+[node name="AKFinishedTimer" type="Timer" parent="gun_state_machine/AK"]
+wait_time = 0.2
+one_shot = true
+
+[node name="shoot" type="AudioStreamPlayer" parent="gun_state_machine/AK"]
+stream = ExtResource("122_r3aw0")
 
 [node name="RAWKETLAUWNCHA" type="Node" parent="gun_state_machine" node_paths=PackedStringArray("pacifism_state")]
 script = ExtResource("125_ki325")
 pacifism_state = NodePath("../Pacifism")
 gun_name = "RAWKETLAUNCHA"
+
+[node name="RocketCancelTimer" type="Timer" parent="gun_state_machine/RAWKETLAUWNCHA"]
+wait_time = 0.2
+one_shot = true
+
+[node name="RocketFinishedTimer" type="Timer" parent="gun_state_machine/RAWKETLAUWNCHA"]
+wait_time = 0.4
+one_shot = true
+
+[node name="RAWKETLAUWNCHA" type="AudioStreamPlayer" parent="gun_state_machine/RAWKETLAUWNCHA"]
+stream = ExtResource("132_f4sdk")
 
 [node name="move_component" type="Node" parent="."]
 script = ExtResource("3_p7n7k")
@@ -982,5 +1058,21 @@ debug_color = Color(0.916139, 0.226482, 0.456663, 0.42)
 [node name="PureAgony" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("107_nxa15")
 
+[node name="CantCombine" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("136_ww2y5")
+
+[node name="CombineNoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("137_kv04d")
+
 [connection signal="timeout" from="gun_state_machine/Pistol/PistolCancelTimer" to="gun_state_machine/Pistol" method="_on_pistol_cancel_timer_timeout"]
 [connection signal="timeout" from="gun_state_machine/Pistol/PistolFinishedTimer" to="gun_state_machine/Pistol" method="_on_pistol_finished_timer_timeout"]
+[connection signal="timeout" from="gun_state_machine/Shotgun/ShotgunCancelTimer" to="gun_state_machine/Shotgun" method="_on_shotgun_cancel_timer_timeout"]
+[connection signal="timeout" from="gun_state_machine/Shotgun/ShotgunFinishedTimer" to="gun_state_machine/Shotgun" method="_on_shotgun_finished_timer_timeout"]
+[connection signal="timeout" from="gun_state_machine/Sniper/SniperCancelTimer" to="gun_state_machine/Sniper" method="_on_sniper_cancel_timer_timeout"]
+[connection signal="timeout" from="gun_state_machine/Sniper/SniperFinishedTimer" to="gun_state_machine/Sniper" method="_on_sniper_finished_timer_timeout"]
+[connection signal="timeout" from="gun_state_machine/MP7/MP7CancelTimer" to="gun_state_machine/MP7" method="_on_mp_7_cancel_timer_timeout"]
+[connection signal="timeout" from="gun_state_machine/MP7/MP7FinishedTimer" to="gun_state_machine/MP7" method="_on_mp_7_finished_timer_timeout"]
+[connection signal="timeout" from="gun_state_machine/AK/AKCancelTimer" to="gun_state_machine/AK" method="_on_ak_cancel_timer_timeout"]
+[connection signal="timeout" from="gun_state_machine/AK/AKFinishedTimer" to="gun_state_machine/AK" method="_on_ak_finished_timer_timeout"]
+[connection signal="timeout" from="gun_state_machine/RAWKETLAUWNCHA/RocketCancelTimer" to="gun_state_machine/RAWKETLAUWNCHA" method="_on_rocket_cancel_timer_timeout"]
+[connection signal="timeout" from="gun_state_machine/RAWKETLAUWNCHA/RocketFinishedTimer" to="gun_state_machine/RAWKETLAUWNCHA" method="_on_rocket_finished_timer_timeout"]

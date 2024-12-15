@@ -31,6 +31,15 @@ tile_map_data = PackedByteArray("AADz//X/AAACAAYAAAD0//X/AAACAAYAAAD1//X/AAACAAY
 [node name="bottom walls" parent="." index="2"]
 tile_map_data = PackedByteArray("AADz//3/AAACAAcAAAD0//3/AAACAAcAAAD1//3/AAACAAcAAAD2//3/AAACAAcAAAD3//3/AAACAAcAAAD4//3/AAACAAcAAAD5//3/AAACAAcAAAD6//3/AAACAAcAAAD7//3/AAACAAcAAAD8//3/AAACAAcAAAD9//3/AAACAAcAAAD+//3/AAACAAcAAAD///3/AAACAAcAAAACAP3/AAACAAcAAAADAP3/AAACAAcAAAAEAP3/AAACAAcAAAAFAP3/AAACAAcAAAAGAP3/AAACAAcAAAAHAP3/AAACAAcAAAAIAP3/AAACAAcAAAAJAP3/AAACAAcAAAAKAP3/AAACAAcAAAALAP3/AAACAAcAAAAMAP3/AAACAAcAAAANAP3/AAACAAcAAAAOAP3/AAACAAcAAADx//r/AAACAAcAAADy//r/AAACAAcAAAA=")
 
+[node name="Marker2D" type="Marker2D" parent="EnemyPositions" index="0"]
+position = Vector2(-678, -483)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemyPositions" index="1"]
+position = Vector2(792, -485)
+
+[node name="Marker2D3" type="Marker2D" parent="EnemyPositions" index="2"]
+position = Vector2(414, -233)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
 position = Vector2(62.5, -163.5)
 shape = SubResource("RectangleShape2D_va3hv")

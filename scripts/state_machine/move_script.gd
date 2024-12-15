@@ -30,12 +30,12 @@ func wants_brake() -> bool:
 	return false
 
 func wants_primary() -> bool:
-	if (Input.is_action_just_pressed("shoot1")):
+	if (Input.is_action_pressed("shoot1")):
 		return true
 	return false
 
 func wants_offhand() -> bool:
-	if (Input.is_action_just_pressed("shoot2")):
+	if (Input.is_action_pressed("shoot2")):
 		return true
 	return false
 

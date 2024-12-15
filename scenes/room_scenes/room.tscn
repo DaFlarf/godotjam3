@@ -17,7 +17,7 @@ scale = Vector2(4, 4)
 tile_set = ExtResource("1_a5o1s")
 
 [node name="bottom walls" type="TileMapLayer" parent="."]
-z_index = 2
+z_index = 3
 scale = Vector2(4, 4)
 tile_set = ExtResource("1_a5o1s")
 

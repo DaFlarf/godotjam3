@@ -22,3 +22,9 @@ func update_ui():
 	$Label.text = formatted_time
 	if player != null:
 		$health_label.text = str(player.health)
+		$wealth_label.text = str(player.cash)
+		var can: bool = player.can_combine()
+		if can:
+			$combine_label.show()
+		else:
+			$combine_label.hide()

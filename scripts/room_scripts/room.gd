@@ -4,8 +4,9 @@ class_name room
 const SPAWN_EXPLOSION_SCENE: PackedScene = preload("res://scenes/enemy_scenes/effects/spawn_explosion.tscn")
 const WALL_SCENE: PackedScene = preload("res://scenes/room_scenes/wall.tscn")
 
-const ENEMY_SCENES: Dictionary = {
+var ENEMY_SCENES: Dictionary = {
 	"CAMPYKNIGHT": preload("res://scenes/enemy_scenes/campy_knight/campy_knight.tscn"),
+	"SHOTGUNKNIGHT": preload("res://scenes/enemy_scenes/shotgun_knight/shotgun_knight.tscn"),
 	"BAT": preload("res://scenes/enemy_scenes/bat/bat.tscn")
 }
 
@@ -61,8 +62,11 @@ func _remove_walls():
 func _spawn_enemies() -> void:
 	for enemy_position in enemy_positions_container.get_children():
 		var enemy: CharacterBody2D 
-		if randi_range(0, 2) == 0:
+		var rand = randi_range(0, 2)
+		if  rand == 0:
 			enemy = ENEMY_SCENES.BAT.instantiate()
+		elif rand == 1:
+			enemy = ENEMY_SCENES.SHOTGUNKNIGHT.instantiate()
 		else:
 			enemy = ENEMY_SCENES.CAMPYKNIGHT.instantiate()
 		var __ = enemy.connect("leaving", func f():

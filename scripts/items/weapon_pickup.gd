@@ -6,7 +6,8 @@ var gun_state: Gun_state
 
 
 func _physics_process(delta: float) -> void:
-	if overlaps_body(player):
-		if Input.is_action_just_pressed("interact"):
-			player.swap_offhand_weapon(gun_state)
-			queue_free()
+	if player != null:
+		if overlaps_body(player):
+			if Input.is_action_just_pressed("interact"):
+				player.swap_offhand_weapon(gun_state)
+				queue_free()

@@ -8,7 +8,7 @@ var movement: Vector2 = Vector2.ZERO
 var distance_to_player: float
 
 func enter():
-	find_direction()
+	face_player()
 	
 func process_physics(delta: float) -> Enemy_state:
 	

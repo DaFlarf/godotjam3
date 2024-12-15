@@ -1,0 +1,107 @@
+[gd_scene load_steps=15 format=3 uid="uid://dgkra4wck4x1q"]
+
+[ext_resource type="PackedScene" uid="uid://cfxqiknbqe2vm" path="res://scenes/enemy_scenes/state_machine/enemy.tscn" id="1_8q8qu"]
+[ext_resource type="Script" path="res://scripts/enemy_scripts/guy/guy.gd" id="2_bh20p"]
+[ext_resource type="SpriteFrames" uid="uid://bvajbmquooifq" path="res://resources/items/guy.tres" id="3_uh3f0"]
+[ext_resource type="Script" path="res://scripts/enemy_scripts/bat/hitstun.gd" id="23_hlv4s"]
+[ext_resource type="Script" path="res://scripts/enemy_scripts/bat/ded.gd" id="24_yhis5"]
+[ext_resource type="Script" path="res://scripts/enemy_scripts/guy/idle.gd" id="25_n73ot"]
+[ext_resource type="Script" path="res://scripts/enemy_scripts/guy/chase.gd" id="26_l748o"]
+[ext_resource type="Script" path="res://scripts/enemy_scripts/guy/attacks/summon.gd" id="27_x0jlo"]
+[ext_resource type="AudioStream" uid="uid://ctb1oc7obasg7" path="res://audio/sfx/player/movement/air_shooter.wav" id="28_vlr52"]
+[ext_resource type="Script" path="res://scripts/enemy_scripts/guy/attacks/sword.gd" id="29_r73ak"]
+[ext_resource type="Script" path="res://scripts/main_scripts/hitbox.gd" id="83_gisbe"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tncbu"]
+radius = 17.0
+height = 82.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i70c2"]
+size = Vector2(90, 127)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1tt84"]
+size = Vector2(90, 127)
+
+[node name="Guy" instance=ExtResource("1_8q8qu")]
+script = ExtResource("2_bh20p")
+health = 60
+
+[node name="animations" parent="." index="0"]
+scale = Vector2(1, 1)
+sprite_frames = ExtResource("3_uh3f0")
+animation = &"dash_down"
+
+[node name="collision" parent="." index="1"]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_tncbu")
+
+[node name="state_machine" parent="." index="2" node_paths=PackedStringArray("starting_state", "hitstun_state", "death_state")]
+starting_state = NodePath("idle")
+hitstun_state = NodePath("hitstun")
+death_state = NodePath("ded")
+
+[node name="hitstun" type="Node" parent="state_machine" index="0" node_paths=PackedStringArray("idle_state", "ded_state")]
+script = ExtResource("23_hlv4s")
+idle_state = NodePath("../idle")
+ded_state = NodePath("../ded")
+animation_name = "hurt"
+
+[node name="ded" type="Node" parent="state_machine" index="1"]
+script = ExtResource("24_yhis5")
+animation_name = "ded"
+
+[node name="idle" type="Node" parent="state_machine" index="2" node_paths=PackedStringArray("chase_state", "summon_state", "sword_state")]
+script = ExtResource("25_n73ot")
+chase_state = NodePath("../chase")
+summon_state = NodePath("../summon")
+sword_state = NodePath("../sword")
+animation_name = "default"
+
+[node name="chase" type="Node" parent="state_machine" index="3" node_paths=PackedStringArray("idle_state", "summon_state", "sword_state")]
+script = ExtResource("26_l748o")
+idle_state = NodePath("../idle")
+summon_state = NodePath("../summon")
+sword_state = NodePath("../sword")
+animation_name = "dash"
+
+[node name="summon" type="Node" parent="state_machine" index="4" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("27_x0jlo")
+idle_state = NodePath("../idle")
+animation_name = "summon"
+
+[node name="pew-pew" type="AudioStreamPlayer" parent="state_machine/summon" index="0"]
+stream = ExtResource("28_vlr52")
+volume_db = 2.0
+
+[node name="sword" type="Node" parent="state_machine" index="5"]
+script = ExtResource("29_r73ak")
+animation_name = "sword"
+
+[node name="HitboxTimer" type="Timer" parent="state_machine/sword" index="0"]
+one_shot = true
+
+[node name="LagTimer" type="Timer" parent="state_machine/sword" index="1"]
+one_shot = true
+
+[node name="AttackCooldown" type="Timer" parent="." index="5"]
+
+[node name="Hitbox" type="Area2D" parent="." index="6"]
+script = ExtResource("83_gisbe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(64, 7.5)
+shape = SubResource("RectangleShape2D_i70c2")
+
+[node name="Hitbox2" type="Area2D" parent="." index="7"]
+script = ExtResource("83_gisbe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox2" index="0"]
+position = Vector2(-65, 7)
+shape = SubResource("RectangleShape2D_1tt84")
+
+[node name="SwordTime" type="Timer" parent="." index="8"]
+
+[connection signal="timeout" from="state_machine/sword/HitboxTimer" to="state_machine/sword" method="_on_hitbox_timer_timeout"]
+[connection signal="timeout" from="state_machine/sword/LagTimer" to="state_machine/sword" method="_on_lag_timer_timeout"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="SwordTime" to="." method="_on_sword_time_timeout"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmvbss8an5j2g"]
+[gd_scene load_steps=5 format=3 uid="uid://dmvbss8an5j2g"]
 
 [ext_resource type="Script" path="res://scripts/items/heart.gd" id="1_fds6h"]
 [ext_resource type="Texture2D" uid="uid://c1s8slyeshnun" path="res://sprites/tiles/v1.1 dungeon crawler 16X16 pixel pack/v1.1 dungeon crawler 16X16 pixel pack/props_itens/potion_red.png" id="2_jbh34"]
+[ext_resource type="AudioStream" uid="uid://bpgyuftqyg57e" path="res://audio/sfx/items/pause.wav" id="3_11qv2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8hau"]
 size = Vector2(20, 32)
@@ -17,4 +18,8 @@ texture = ExtResource("2_jbh34")
 position = Vector2(-2, -4)
 shape = SubResource("RectangleShape2D_p8hau")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_11qv2")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

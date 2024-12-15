@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=4 uid="uid://dr7jmmrq0e7x"]
 
 [ext_resource type="PackedScene" uid="uid://bx5fjserd040x" path="res://scenes/room_scenes/room.tscn" id="1_buijd"]
-[ext_resource type="PackedScene" uid="uid://c7joyboe7un3e" path="res://scenes/room_scenes/red_key_door.tscn" id="2_4fx8e"]
+[ext_resource type="PackedScene" uid="uid://c0lbti8qwy174" path="res://scenes/items/scuffed_door.tscn" id="2_jv5es"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v7h31"]
 size = Vector2(127, 65)
@@ -26,6 +26,48 @@ tile_map_data = PackedByteArray("AAACAP//AAADAAUAAAD/////AAAEAAUAAAD5//7/AAAEAAY
 [node name="bottom walls" parent="." index="2"]
 tile_map_data = PackedByteArray("AAD6//7/AAACAAcAAAD7//7/AAACAAcAAAD8//7/AAACAAcAAAD9//7/AAACAAcAAAD+//7/AAACAAcAAAD///7/AAACAAcAAAACAP7/AAACAAcAAAADAP7/AAACAAcAAAAEAP7/AAACAAcAAAAFAP7/AAACAAcAAAAGAP7/AAACAAcAAAAHAP7/AAACAAcAAAAIAP7/AAACAAcAAAAJAP7/AAACAAcAAAAKAP7/AAACAAcAAAALAP7/AAACAAcAAAAMAP7/AAACAAcAAAANAP7/AAACAAcAAAAOAP7/AAACAAcAAAAPAP7/AAACAAcAAAAQAP7/AAACAAcAAAARAP7/AAACAAcAAAASAP7/AAACAAcAAAATAP7/AAACAAcAAAAUAP7/AAACAAcAAAAVAP7/AAACAAcAAAAWAP7/AAACAAcAAAAXAP7/AAACAAcAAAAYAP7/AAACAAcAAAAZAP7/AAACAAcAAAAaAP7/AAACAAcAAAAbAP7/AAACAAcAAAAcAP7/AAACAAcAAAAdAP7/AAACAAcAAAA=")
 
+[node name="Marker2D" type="Marker2D" parent="EnemyPositions" index="0"]
+position = Vector2(-294, -934)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemyPositions" index="1"]
+position = Vector2(916, -749)
+
+[node name="Marker2D3" type="Marker2D" parent="EnemyPositions" index="2"]
+position = Vector2(1502, -535)
+
+[node name="Marker2D4" type="Marker2D" parent="EnemyPositions" index="3"]
+position = Vector2(412, -291)
+
+[node name="Marker2D5" type="Marker2D" parent="EnemyPositions" index="4"]
+position = Vector2(-237, -542)
+
+[node name="Marker2D6" type="Marker2D" parent="EnemyPositions" index="5"]
+position = Vector2(1436, -861)
+
+[node name="Marker2D7" type="Marker2D" parent="EnemyPositions" index="6"]
+position = Vector2(1179, -284)
+
+[node name="Marker2D8" type="Marker2D" parent="EnemyPositions" index="7"]
+position = Vector2(350, -941)
+
+[node name="Marker2D9" type="Marker2D" parent="EnemyPositions" index="8"]
+position = Vector2(1882, -617)
+
+[node name="Marker2D10" type="Marker2D" parent="EnemyPositions" index="9"]
+position = Vector2(1688, -152)
+
+[node name="Marker2D11" type="Marker2D" parent="EnemyPositions" index="10"]
+position = Vector2(90, -808)
+
+[node name="Marker2D12" type="Marker2D" parent="EnemyPositions" index="11"]
+position = Vector2(661, -545)
+
+[node name="Marker2D13" type="Marker2D" parent="EnemyPositions" index="12"]
+position = Vector2(-162, -225)
+
+[node name="Marker2D14" type="Marker2D" parent="EnemyPositions" index="13"]
+position = Vector2(864, -161)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
 position = Vector2(61.5, -100.5)
 shape = SubResource("RectangleShape2D_v7h31")
@@ -44,5 +86,5 @@ position = Vector2(702.25, -1125)
 shape = SubResource("RectangleShape2D_wo6g5")
 debug_color = Color(0.923577, 0.249374, 0.309007, 0.42)
 
-[node name="LockedDoor" parent="." index="10" instance=ExtResource("2_4fx8e")]
-position = Vector2(702, -1092)
+[node name="Node2D" parent="." index="10" instance=ExtResource("2_jv5es")]
+position = Vector2(703, -1091)

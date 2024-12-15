@@ -68,7 +68,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("7_65q80")
 }],
-"loop": true,
+"loop": false,
 "name": &"ded_left",
 "speed": 5.0
 }, {
@@ -91,7 +91,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("7_65q80")
 }],
-"loop": true,
+"loop": false,
 "name": &"ded_right",
 "speed": 5.0
 }, {
@@ -114,7 +114,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("7_65q80")
 }],
-"loop": true,
+"loop": false,
 "name": &"ded_up",
 "speed": 5.0
 }, {
@@ -279,7 +279,7 @@ health = 1
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_h7eaq")
-animation = &"ded_down"
+animation = &"hurt_up"
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -299,7 +299,7 @@ animation_name = "default"
 script = ExtResource("5_s0saj")
 idle_state = NodePath("../Idle")
 animation_name = "default"
-move_speed = 250.0
+move_speed = 200.0
 
 [node name="Hitstun" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "ded_state")]
 script = ExtResource("6_85syw")
